@@ -9,6 +9,10 @@ public class Layer {
     this(null, new GridPane());
   }
 
+  public Layer(Layer parent) {
+    this(parent, new GridPane());
+  }
+  
   public Layer(GridPane grid) {
     this(null, grid);
   }
