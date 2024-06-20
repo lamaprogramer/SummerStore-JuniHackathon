@@ -39,7 +39,7 @@ public class BaseLayer extends Layer {
   }
   
   private void style() {
-    grid.setStyle("-fx-background-color: BEIGE;"); 
+    grid.setStyle("-fx-background-color: #FFFFFB;"); 
   }
   
   private void listeners() {
