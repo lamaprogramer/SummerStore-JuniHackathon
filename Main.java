@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import layers.content.ContentLayer;
+import layers.controls.ControlsLayer;
 import layers.navigation.NavbarLayer;
 import layers.BaseLayer;
 
@@ -23,9 +25,17 @@ public class Main extends Application
 
     // Second Layer
     NavbarLayer navbarLayer = new NavbarLayer(baseLayer);
+
+    // Third Layer
+    ControlsLayer controlsLayer = new ControlsLayer(baseLayer);
+
+    // Fourth Layer
+    ContentLayer contentLayer = new ContentLayer(controlsLayer);
     
     Scene scene = new Scene(baseLayer.grid, 960, 540); 
- 
+
+    scene.getStylesheets().add("resources/stylesheets/main.css");
+    
     stage.setTitle("CSS Example in JavaFX"); 
     stage.setScene(scene);
     stage.show(); 

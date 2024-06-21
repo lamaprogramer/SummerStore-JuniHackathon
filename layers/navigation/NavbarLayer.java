@@ -45,7 +45,7 @@ public class NavbarLayer extends Layer {
     grid.setAlignment(Pos.CENTER); 
 
     menuButton = new Button("Menu");
-    brand = new Label("SummerStore");
+    brand = new Label("Summer Store");
 
     
     grid.add(menuButton, 0, 0);
@@ -54,11 +54,13 @@ public class NavbarLayer extends Layer {
   }
 
   private void style() {
-    brand.setStyle("-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to bottom right, #7EFF7E, #FFFF88); -fx-effect: dropshadow(three-pass-box, rgba(142,142,255,0.2), 10, 0, 5, 5);");
+    menuButton.getStyleClass().addAll("colored-button", "with-dropshadow");
 
-    menuButton.setStyle("-fx-background-color: #FFFF88; -fx-effect: dropshadow(three-pass-box, rgba(142,142,255,0.2), 10, 0, 5, 5);");
-    
-    grid.setStyle("-fx-background-color: #FFFFF0;; -fx-effect: dropshadow(three-pass-box, rgba(142,142,255,0.2), 10, 0, 0, 0);"); 
+    brand.getStyleClass().addAll("with-dropshadow");
+    brand.setStyle("-fx-font-size: 2em; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to bottom right, #7EFF7E, #FFFF88);");
+
+    grid.getStyleClass().addAll("with-dropshadow");
+    grid.setStyle("-fx-background-color: #FFFFF0;"); 
   }
 
   private void listeners() {
