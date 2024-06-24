@@ -1,0 +1,7 @@
+.colored-button {
+  -fx-background-color: #FFFF88;
+}
+
+.with-dropshadow {
+  -fx-effect: dropshadow(three-pass-box, rgba(142,142,255,0.2), 10, 0, 5, 5);
+}

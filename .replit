@@ -1,8 +1,8 @@
-compile = "javac --module-path javafx-sdk-18.0.2/lib --add-modules javafx.controls Main.java"
-run = "java --module-path javafx-sdk-18.0.2/lib --add-modules javafx.controls Main"
+#compile = "mvn clean javafx:run"
+run = "mvn clean javafx:run"
 
 entrypoint = "Main.java"
-hidden = ["**/*.class", "javafx-sdk-18.0.2"]
+hidden = ["**/*.class"]
 
 [unitTest]
 language = "java"
@@ -14,7 +14,7 @@ channel = "stable-22_11"
 support = true
 
 [debugger.compile]
-command = "javac -classpath .:/run_dir/junit-4.12.jar:target/dependency/* -g -d . $(find . -type f -name '*.java')"
+command = "mvn clean package"
 
 [debugger.interactive]
 transport = "localhost:0"
