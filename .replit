@@ -2,7 +2,7 @@
 run = "mvn clean javafx:run"
 
 entrypoint = "Main.java"
-hidden = ["**/*.class"]
+hidden = ["**/*.class", "ebay_config.yaml"]
 
 [unitTest]
 language = "java"
