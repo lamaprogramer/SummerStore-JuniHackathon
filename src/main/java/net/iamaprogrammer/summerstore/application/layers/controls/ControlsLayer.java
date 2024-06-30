@@ -1,4 +1,4 @@
-package net.iamaprogrammer.summerstore.layers.content;
+package net.iamaprogrammer.summerstore.application.layers.controls;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,41 +9,40 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
-import net.iamaprogrammer.summerstore.layers.Layer;
+import net.iamaprogrammer.summerstore.application.Layer;
 
-public class ContentLayer extends Layer {
+public class ControlsLayer extends Layer {
 
-  public ContentLayer(Layer parent) {
-    super(parent);
-
-    init(parent);
-    listeners();
-    style();
+  public ControlsLayer() {
+    super();
   }
 
-  private void init(Layer parent) {
+  public void init() {
     // Init Grid
     RowConstraints row1 = new RowConstraints();
-    row1.setPercentHeight(100);
+    row1.setPercentHeight(10);
+    RowConstraints row2 = new RowConstraints();
+    row2.setPercentHeight(80);
+    RowConstraints row3 = new RowConstraints();
+    row3.setPercentHeight(10);
 
     ColumnConstraints col1 = new ColumnConstraints();
     col1.setPercentWidth(100);
-    
     col1.setHalignment(HPos.CENTER);
 
-    grid.getRowConstraints().addAll(row1);
+    grid.getRowConstraints().addAll(row1, row2, row3);
     grid.getColumnConstraints().addAll(col1);
 
     grid.setAlignment(Pos.CENTER); 
     parent.grid.add(grid, 0, 1);
   }
 
-  private void style() {
+  public void style() {
     grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: red;"); 
+    grid.setStyle("-fx-background-color: blue;"); 
   }
 
-  private void listeners() {
+  public void listeners() {
 
   }
 }

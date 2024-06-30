@@ -2,6 +2,8 @@ package net.iamaprogrammer.summerstore;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -17,19 +19,23 @@ import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import net.iamaprogrammer.summerstore.layers.content.ContentLayer;
-import net.iamaprogrammer.summerstore.layers.controls.ControlsLayer;
-import net.iamaprogrammer.summerstore.layers.navigation.NavbarLayer;
-import net.iamaprogrammer.summerstore.layers.BaseLayer;
+import net.iamaprogrammer.summerstore.application.layers.content.ContentLayer;
+import net.iamaprogrammer.summerstore.application.layers.controls.ControlsLayer;
+import net.iamaprogrammer.summerstore.application.layers.navigation.NavbarLayer;
+import net.iamaprogrammer.summerstore.application.layers.BaseLayer;
+import net.iamaprogrammer.summerstore.application.ApplicationTree;
+import net.iamaprogrammer.summerstore.application.ApplicationBuilder;
+
+import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
 
 import com.google.gson.*;
+import com.ebay.api.client.auth.oauth2.CredentialUtil;
 
 public class Main extends Application { 
-  private static final String EBAY_API_KEY = System.getenv("EBAY_API_KEY");
+  private static final EbayOauth2Api ebayApi = new EbayOauth2Api();
   
   @Override
   public void start(Stage stage) {
-
     // try {
     //   URL url = new URL("https://api.nal.usda.gov/fdc/v1/food/1750339?api_key=DEMO_KEY");
     //   HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -50,23 +56,16 @@ public class Main extends Application {
     // } catch (Exception e) {
     //     System.out.println("Exception in NetClientGet:- " + e);
     // }
-
-    BaseLayer baseLayer = new BaseLayer();
-
-    // Second Layer
-    NavbarLayer navbarLayer = new NavbarLayer(baseLayer);
-
-    // Third Layer
-    ControlsLayer controlsLayer = new ControlsLayer(baseLayer);
-
-    // Fourth Layer
-    ContentLayer contentLayer = new ContentLayer(controlsLayer);
-    
-    Scene scene = new Scene(baseLayer.grid, 960, 540); 
+    System.out.println(ebayApi.credentialsLoaded());
+    Scene scene = new ApplicationBuilder(new BaseLayer())
+      .addNode(new NavbarLayer())
+      .addTreeNode(new ApplicationTree(new ControlsLayer())
+        .addNode(new ContentLayer())
+      ).init();
 
     scene.getStylesheets().add("stylesheets/main.css");
     
-    stage.setTitle("CSS Example in JavaFX"); 
+    stage.setTitle("Summer Store"); 
     stage.setScene(scene);
     stage.show(); 
   } 

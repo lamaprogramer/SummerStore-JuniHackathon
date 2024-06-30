@@ -1,4 +1,4 @@
-package net.iamaprogrammer.summerstore.layers.navigation;
+package net.iamaprogrammer.summerstore.application.layers.navigation;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,22 +9,18 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
-import net.iamaprogrammer.summerstore.layers.Layer;
+import net.iamaprogrammer.summerstore.application.Layer;
 
 public class NavbarLayer extends Layer {
   Button menuButton;
   Label brand;
 
   
-  public NavbarLayer(Layer parent) {
-    super(parent);
-
-    init(parent);
-    listeners();
-    style();
+  public NavbarLayer() {
+    super();
   }
 
-  private void init(Layer parent) {
+  public void init() {
     // Init Grid
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(100);
@@ -53,7 +49,7 @@ public class NavbarLayer extends Layer {
     parent.grid.add(grid, 0, 0);
   }
 
-  private void style() {
+  public void style() {
     menuButton.getStyleClass().addAll("colored-button", "with-dropshadow");
 
     brand.getStyleClass().addAll("with-dropshadow");
@@ -63,7 +59,7 @@ public class NavbarLayer extends Layer {
     grid.setStyle("-fx-background-color: #FFFFF0;"); 
   }
 
-  private void listeners() {
+  public void listeners() {
 
   }
 }

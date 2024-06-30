@@ -1,4 +1,4 @@
-package net.iamaprogrammer.summerstore.layers;
+package net.iamaprogrammer.summerstore.application.layers;
 
 import javafx.geometry.Insets; 
 import javafx.geometry.Pos; 
@@ -11,19 +11,15 @@ import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import net.iamaprogrammer.summerstore.layers.Layer;
+import net.iamaprogrammer.summerstore.application.Layer;
 
 public class BaseLayer extends Layer {
   
   public BaseLayer() {
     super();
-
-    init(null);
-    listeners();
-    style();
   }
   
-  private void init(Layer parent) {
+  public void init() {
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(10);
     RowConstraints row2 = new RowConstraints();
@@ -38,11 +34,11 @@ public class BaseLayer extends Layer {
     grid.setAlignment(Pos.CENTER);
   }
   
-  private void style() {
+  public void style() {
     grid.setStyle("-fx-background-color: #FFFFFB;"); 
   }
   
-  private void listeners() {
+  public void listeners() {
     
   }
 }
