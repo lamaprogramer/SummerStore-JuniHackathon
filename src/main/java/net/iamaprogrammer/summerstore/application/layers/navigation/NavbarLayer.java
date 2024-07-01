@@ -46,7 +46,7 @@ public class NavbarLayer extends Layer {
     
     grid.add(menuButton, 0, 0);
     grid.add(brand, 1, 0);
-    parent.grid.add(grid, 0, 0);
+    this.addToParent(0, 0);
   }
 
   public void style() {

@@ -14,6 +14,10 @@ public class Layer {
     this.parent = parent;
   }
 
+  public void addToParent(int row, int column) {
+    this.parent.grid.add(this.grid, row, column);
+  }
+
   public void init() {}
   public void style() {}
   public void listeners() {}

@@ -34,7 +34,7 @@ public class ControlsLayer extends Layer {
     grid.getColumnConstraints().addAll(col1);
 
     grid.setAlignment(Pos.CENTER); 
-    parent.grid.add(grid, 0, 1);
+    this.addToParent(0, 1);
   }
 
   public void style() {

@@ -24,9 +24,10 @@ import net.iamaprogrammer.summerstore.application.layers.controls.ControlsLayer;
 import net.iamaprogrammer.summerstore.application.layers.navigation.NavbarLayer;
 import net.iamaprogrammer.summerstore.application.layers.BaseLayer;
 import net.iamaprogrammer.summerstore.application.ApplicationTree;
-import net.iamaprogrammer.summerstore.application.ApplicationBuilder;
+import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 
 import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
+import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi;
 
 import com.google.gson.*;
 import com.ebay.api.client.auth.oauth2.CredentialUtil;
@@ -36,32 +37,18 @@ public class Main extends Application {
   
   @Override
   public void start(Stage stage) {
-    // try {
-    //   URL url = new URL("https://api.nal.usda.gov/fdc/v1/food/1750339?api_key=DEMO_KEY");
-    //   HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-    //   conn.setRequestMethod("GET");
-    //   conn.setRequestProperty("Accept", "application/json");
-    //   if (conn.getResponseCode() != 200) {
-    //     throw new RuntimeException("Failed : HTTP Error code : "
-    //             + conn.getResponseCode());
-    //   }
-    //   InputStreamReader in = new InputStreamReader(conn.getInputStream());
-    //   BufferedReader br = new BufferedReader(in);
-    //   String output;
-    //   while ((output = br.readLine()) != null) {
-    //     System.out.println(output);
-    //   }
-    //   conn.disconnect();
 
-    // } catch (Exception e) {
-    //     System.out.println("Exception in NetClientGet:- " + e);
-    // }
-    System.out.println(ebayApi.credentialsLoaded());
-    Scene scene = new ApplicationBuilder(new BaseLayer())
+    String response = EbayBrowseApi.requestItems(ebayApi, "pool", 3, 0);
+    System.out.println(response);
+    
+    //System.out.println(ebayApi.getApplicationToken());
+    TreeBasedApplication application = TreeBasedApplication.builder(new BaseLayer())
       .addNode(new NavbarLayer())
       .addTreeNode(new ApplicationTree(new ControlsLayer())
         .addNode(new ContentLayer())
       ).init();
+
+    Scene scene = application.getScene(960, 540);
 
     scene.getStylesheets().add("stylesheets/main.css");
     

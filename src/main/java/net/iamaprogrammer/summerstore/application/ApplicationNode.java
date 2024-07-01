@@ -5,7 +5,7 @@ import java.util.*;
 import net.iamaprogrammer.summerstore.application.Layer;
 
 public class ApplicationNode {
-  protected final List<ApplicationNode> children = new ArrayList<>();
+  protected List<ApplicationNode> children = new ArrayList<>();
   protected ApplicationNode parent;
   protected Layer node;
 
