@@ -32,16 +32,10 @@ import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi;
 import com.google.gson.*;
 import com.ebay.api.client.auth.oauth2.CredentialUtil;
 
-public class Main extends Application { 
-  private static final EbayOauth2Api ebayApi = new EbayOauth2Api();
+public class Main extends Application {
   
   @Override
   public void start(Stage stage) {
-
-    String response = EbayBrowseApi.requestItems(ebayApi, "pool", 3, 0);
-    System.out.println(response);
-    
-    //System.out.println(ebayApi.getApplicationToken());
     TreeBasedApplication application = TreeBasedApplication.builder(new BaseLayer())
       .addNode(new NavbarLayer())
       .addTreeNode(new ApplicationTree(new ControlsLayer())

@@ -11,10 +11,10 @@ import com.ebay.api.client.auth.oauth2.model.Environment;
 import com.ebay.api.client.auth.oauth2.model.OAuthResponse;
 
 public class EbayOauth2Api {
-  private static final List<String> SCOPE_LIST_SANDBOX = Arrays.asList(new String[]{"https://api.ebay.com/oauth/api_scope", "https://api.ebay.com/oauth/api_scope/buy.item.feed"});
+  private static final List<String> SCOPE_LIST_PRODUCTION = Arrays.asList(new String[]{"https://api.ebay.com/oauth/api_scope"});
 
   // YAML stored in string for security purpouses.
-  private static final String EBAY_CONFIG_YAML = String.format("name: ebay-config\n\napi.sandbox.ebay.com:\n    appid: %s\n    certid: %s\n    devid: %s\n    redirecturi: %s", System.getenv("EBAY_APP_ID"), System.getenv("EBAY_CERT_ID"), System.getenv("EBAY_DEV_ID"), System.getenv("EBAY_REDIRECT_URI"));
+  private static final String EBAY_CONFIG_YAML = String.format("name: ebay-config\n\napi.ebay.com:\n    appid: %s\n    certid: %s\n    devid: %s\n    redirecturi: %s", System.getenv("EBAY_APP_ID"), System.getenv("EBAY_CERT_ID"), System.getenv("EBAY_DEV_ID"), System.getenv("EBAY_REDIRECT_URI"));
   
   private static String APPLICATION_TOKEN;
   private static boolean CREDENTIALS_LOADED = false;
@@ -26,7 +26,7 @@ public class EbayOauth2Api {
       CREDENTIALS_LOADED = true;
       oauth2Api = new OAuth2Api();
   
-      OAuthResponse oauth2Response = oauth2Api.getApplicationToken(Environment.SANDBOX, SCOPE_LIST_SANDBOX);
+      OAuthResponse oauth2Response = oauth2Api.getApplicationToken(Environment.PRODUCTION, SCOPE_LIST_PRODUCTION);
       Optional<AccessToken> applicationToken = oauth2Response.getAccessToken();
       
       if (!applicationToken.isPresent()) {
