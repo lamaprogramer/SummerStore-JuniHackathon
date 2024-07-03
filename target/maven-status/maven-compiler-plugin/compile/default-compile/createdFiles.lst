@@ -3,6 +3,7 @@ net/iamaprogrammer/summerstore/application/ScrollableLayer.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication$ApplicationBuilder.class
 net/iamaprogrammer/summerstore/api/ebay/EbayBrowseApi.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication.class
+net/iamaprogrammer/summerstore/api/ProductInfo.class
 net/iamaprogrammer/summerstore/application/ApplicationNode.class
 net/iamaprogrammer/summerstore/application/Layer.class
 net/iamaprogrammer/summerstore/Main.class

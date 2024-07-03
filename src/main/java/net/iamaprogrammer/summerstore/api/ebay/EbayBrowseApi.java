@@ -1,7 +1,6 @@
 package net.iamaprogrammer.summerstore.api.ebay;
 
-import java.util.Map; 
-import java.util.HashMap;
+import java.util.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,10 +14,11 @@ import com.google.gson.*;
 
 import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
 import net.iamaprogrammer.summerstore.api.URLBuilder;
+import net.iamaprogrammer.summerstore.api.ProductInfo;
 
 
 public class EbayBrowseApi {
-  public static JsonObject requestItems(EbayOauth2Api oauth, String query, int limit, int offset) {
+  public static JsonObject requestRawItemData(EbayOauth2Api oauth, String query, int limit, int offset) {
     URL url = new URLBuilder("https://api.ebay.com/buy/browse/v1/item_summary/search")
       .query(query)
       .limit(limit)
@@ -39,6 +39,19 @@ public class EbayBrowseApi {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public static List<ProductInfo> requestItems(EbayOauth2Api oauth, String query, int limit, int offset) {
+    JsonObject data = requestRawItemData(oauth, query, limit, offset);
+    if (data == null) {
+      return null;
+    }
+
+    List<ProductInfo> items = new ArrayList<>();
+    for (JsonElement item : data.getAsJsonArray("itemSummaries")) {
+      items.add(new ProductInfo(item.getAsJsonObject()));
+    }
+    return items;
   }
 
   private static HttpURLConnection createConnection(URL url, String method, Map<String, String> headers) throws IOException, ProtocolException {

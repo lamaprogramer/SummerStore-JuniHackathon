@@ -1,4 +1,5 @@
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/Main.java
+/home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/api/ProductInfo.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/api/URLBuilder.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/api/ebay/EbayBrowseApi.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/api/ebay/EbayOauth2Api.java

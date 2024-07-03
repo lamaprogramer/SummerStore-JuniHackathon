@@ -5,3 +5,8 @@
 .with-dropshadow {
   -fx-effect: dropshadow(three-pass-box, rgba(142,142,255,0.2), 10, 0, 5, 5);
 }
+
+.item-title {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+}
