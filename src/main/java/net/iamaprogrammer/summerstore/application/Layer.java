@@ -18,6 +18,11 @@ public class Layer {
     this.parent.grid.add(this.grid, row, column);
   }
 
+  public void setEnabled(boolean enabled) {
+    this.grid.setVisible(enabled);
+    this.grid.setManaged(enabled);
+  }
+
   public void init() {}
   public void style() {}
   public void listeners() {}

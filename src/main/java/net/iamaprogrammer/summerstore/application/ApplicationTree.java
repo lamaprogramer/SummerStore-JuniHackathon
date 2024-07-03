@@ -9,6 +9,10 @@ public class ApplicationTree extends ApplicationNode {
     super(root);
   }
   
+  public ApplicationTree(Layer root, boolean enabled) {
+    super(root, enabled);
+  }
+  
   public ApplicationTree addTreeNode(ApplicationTree node) {
     this.children.add(node);
     return this;
@@ -16,6 +20,11 @@ public class ApplicationTree extends ApplicationNode {
 
   public ApplicationTree addNode(Layer node) {
     this.children.add(new ApplicationNode(node));
+    return this;
+  }
+
+  public ApplicationTree addNode(Layer node, boolean enabled) {
+    this.children.add(new ApplicationNode(node, enabled));
     return this;
   }
 }

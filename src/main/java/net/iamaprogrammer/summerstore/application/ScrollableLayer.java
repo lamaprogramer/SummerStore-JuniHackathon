@@ -16,6 +16,12 @@ public class ScrollableLayer extends Layer {
   }
 
   @Override
+  public void setEnabled(boolean enabled) {
+    this.scrollPane.setVisible(enabled);
+    this.scrollPane.setManaged(enabled);
+  }
+
+  @Override
   public void addToParent(int row, int column) {
     this.parent.grid.add(this.scrollPane, row, column);
   }

@@ -13,6 +13,15 @@ public class ApplicationNode {
     this.node = node;
   }
 
+  protected ApplicationNode(Layer node, boolean enabled) {
+    this.node = node;
+    this.node.setEnabled(enabled);
+  }
+
+  public void setEnabled(boolean enabled) {
+    this.node.setEnabled(enabled);
+  }
+
   public Layer getNode() {
     return node;
   }

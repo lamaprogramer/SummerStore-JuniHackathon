@@ -56,6 +56,11 @@ public class TreeBasedApplication extends ApplicationNode {
       this.children.add(new ApplicationNode(node));
       return this;
     }
+
+    public ApplicationBuilder addNode(Layer node, boolean enabled) {
+      this.children.add(new ApplicationNode(node, enabled));
+      return this;
+    }
   
     public TreeBasedApplication init() {
       return new TreeBasedApplication(this);
