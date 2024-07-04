@@ -2,6 +2,8 @@ package net.iamaprogrammer.summerstore.application;
 
 import javafx.scene.layout.GridPane;
 
+import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
+
 public class Layer {
   public GridPane grid;
   public Layer parent;
@@ -23,7 +25,7 @@ public class Layer {
     this.grid.setManaged(enabled);
   }
 
-  public void init() {}
+  public void init(TreeBasedApplication tree) {}
   public void style() {}
   public void listeners() {}
 }

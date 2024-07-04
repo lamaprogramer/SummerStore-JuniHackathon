@@ -21,7 +21,7 @@ public class TreeBasedApplication extends ApplicationNode {
   }
 
   public Scene getScene(int width, int height) {
-    return new Scene(this.node.grid, 960, 540);
+    return new Scene(this.node.grid, width, height);
   }
 
   private void initTree() {
@@ -36,7 +36,7 @@ public class TreeBasedApplication extends ApplicationNode {
         }
       }
 
-      node.getNode().init();
+      node.getNode().init(this);
       node.getNode().style();
       node.getNode().listeners();
     }

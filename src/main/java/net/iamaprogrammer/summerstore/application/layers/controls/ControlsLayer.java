@@ -10,6 +10,7 @@ import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
 import net.iamaprogrammer.summerstore.application.Layer;
+import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 
 public class ControlsLayer extends Layer {
 
@@ -17,7 +18,7 @@ public class ControlsLayer extends Layer {
     super();
   }
 
-  public void init() {
+  public void init(TreeBasedApplication tree) {
     // Init Grid
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(10);

@@ -21,6 +21,7 @@ import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
 import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi;
 import net.iamaprogrammer.summerstore.api.ProductInfo;
 
+import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
@@ -45,10 +46,10 @@ public class ContentLayer extends ScrollableLayer {
     grid.setHgap(15);
     grid.setVgap(15);
 
-    this.products = EbayBrowseApi.requestItems(ebayApi, "pool", ROW_COUNT * COLUMN_COUNT, 0);
+    this.products = EbayBrowseApi.requestItems(ebayApi, "flower", ROW_COUNT * COLUMN_COUNT, 0);
   }
 
-  public void init() {
+  public void init(TreeBasedApplication tree) {
     for (int i = 0; i < products.size(); i++) {
       int row = i / ROW_COUNT;
       int column = i % COLUMN_COUNT;
@@ -81,15 +82,19 @@ public class ContentLayer extends ScrollableLayer {
     imageDisplay.setPercentHeight(60);
 
     RowConstraints titleDisplay = new RowConstraints();
-    titleDisplay.setPercentHeight(40);
+    titleDisplay.setPercentHeight(20);
     titleDisplay.setValignment(VPos.TOP);
+
+    RowConstraints priceDisplay = new RowConstraints();
+    priceDisplay.setPercentHeight(20);
+    priceDisplay.setValignment(VPos.TOP);
 
     ColumnConstraints col = new ColumnConstraints();
     col.setPercentWidth(100);
     col.setHalignment(HPos.CENTER);
 
     pane.getColumnConstraints().add(col);
-    pane.getRowConstraints().addAll(imageDisplay, titleDisplay);
+    pane.getRowConstraints().addAll(imageDisplay, titleDisplay, priceDisplay);
 
     return pane;
   }
@@ -103,6 +108,10 @@ public class ContentLayer extends ScrollableLayer {
     title.setWrapText(true);
     title.getStyleClass().add("item-title");
     pane.add(title, 0, 1);
+
+    Label price = new Label(product.getPrice().value + " " + product.getPrice().currency);
+    price.setWrapText(true);
+    pane.add(price, 0, 2);
   }
 
   private void styleItemDisplayPane(GridPane pane) {

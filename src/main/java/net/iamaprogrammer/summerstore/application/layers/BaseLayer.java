@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Layer;
 
 public class BaseLayer extends Layer {
@@ -19,7 +20,7 @@ public class BaseLayer extends Layer {
     super();
   }
   
-  public void init() {
+  public void init(TreeBasedApplication tree) {
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(10);
     RowConstraints row2 = new RowConstraints();
