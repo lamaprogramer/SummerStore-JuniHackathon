@@ -37,9 +37,9 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
     TreeBasedApplication application = TreeBasedApplication.builder(new BaseLayer())
-      .addNode(new NavbarLayer())
-      .addTreeNode(new ApplicationTree(new ControlsLayer())
-        .addNode(new ContentLayer())
+      .addNode("navbar", new NavbarLayer())
+      .addTreeNode(new ApplicationTree("product_controls", new ControlsLayer())
+        .addNode("products", new ContentLayer())
       ).init();
 
     Scene scene = application.getScene(960, 540);

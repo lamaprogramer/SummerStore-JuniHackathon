@@ -1,5 +1,6 @@
 net/iamaprogrammer/summerstore/application/layers/BaseLayer.class
 net/iamaprogrammer/summerstore/application/ScrollableLayer.class
+net/iamaprogrammer/summerstore/application/layers/content/ContentLayer$1.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication$ApplicationBuilder.class
 net/iamaprogrammer/summerstore/api/ebay/EbayBrowseApi.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication.class

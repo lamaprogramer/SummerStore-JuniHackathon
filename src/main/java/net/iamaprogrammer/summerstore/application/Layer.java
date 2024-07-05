@@ -8,7 +8,7 @@ public class Layer {
   public GridPane grid;
   public Layer parent;
 
-  public Layer() {
+  protected Layer() {
     this.grid = new GridPane();
   }
 

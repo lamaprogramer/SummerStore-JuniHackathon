@@ -9,7 +9,7 @@ import net.iamaprogrammer.summerstore.application.ApplicationTree;
 
 public class TreeBasedApplication extends ApplicationNode {
   protected TreeBasedApplication(ApplicationBuilder builder) {
-    super(builder.node);
+    super(builder.identifier, builder.node);
     this.parent = builder.parent;
     this.children = builder.children;
 
@@ -22,6 +22,17 @@ public class TreeBasedApplication extends ApplicationNode {
 
   public Scene getScene(int width, int height) {
     return new Scene(this.node.grid, width, height);
+  }
+
+  public ApplicationNode getNodeAtPath(String path) {
+    String[] pathArray = path.split("/");
+    ApplicationNode node = this;
+
+    for (int i = 0; i < pathArray.length; i++) {
+      node = node.getChild(pathArray[i]);
+    }
+
+    return node;
   }
 
   private void initTree() {
@@ -44,7 +55,7 @@ public class TreeBasedApplication extends ApplicationNode {
 
   public static class ApplicationBuilder extends ApplicationNode {
     public ApplicationBuilder(Layer root) {
-      super(root);
+      super("", root);
     }
   
     public ApplicationBuilder addTreeNode(ApplicationTree node) {
@@ -52,13 +63,13 @@ public class TreeBasedApplication extends ApplicationNode {
       return this;
     }
   
-    public ApplicationBuilder addNode(Layer node) {
-      this.children.add(new ApplicationNode(node));
+    public ApplicationBuilder addNode(String identifier, Layer node) {
+      this.children.add(new ApplicationNode(identifier, node));
       return this;
     }
 
-    public ApplicationBuilder addNode(Layer node, boolean enabled) {
-      this.children.add(new ApplicationNode(node, enabled));
+    public ApplicationBuilder addNode(String identifier, Layer node, boolean enabled) {
+      this.children.add(new ApplicationNode(identifier, node, enabled));
       return this;
     }
   

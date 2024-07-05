@@ -10,6 +10,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.event.ActionEvent; 
+import javafx.event.EventHandler; 
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -55,7 +57,7 @@ public class ContentLayer extends ScrollableLayer {
       int column = i % COLUMN_COUNT;
 
       GridPane pane = this.setupItemDisplayPane();
-      this.populateItemDisplayPane(pane, products.get(i));
+      this.populateItemDisplayPane(tree, pane, products.get(i));
       this.styleItemDisplayPane(pane);
 
       this.grid.add(pane, row, column);
@@ -86,20 +88,24 @@ public class ContentLayer extends ScrollableLayer {
     titleDisplay.setValignment(VPos.TOP);
 
     RowConstraints priceDisplay = new RowConstraints();
-    priceDisplay.setPercentHeight(20);
-    priceDisplay.setValignment(VPos.TOP);
+    priceDisplay.setPercentHeight(10);
+    priceDisplay.setValignment(VPos.CENTER);
+
+    RowConstraints controlsDisplay = new RowConstraints();
+    controlsDisplay.setPercentHeight(10);
+    controlsDisplay.setValignment(VPos.CENTER);
 
     ColumnConstraints col = new ColumnConstraints();
     col.setPercentWidth(100);
     col.setHalignment(HPos.CENTER);
 
     pane.getColumnConstraints().add(col);
-    pane.getRowConstraints().addAll(imageDisplay, titleDisplay, priceDisplay);
+    pane.getRowConstraints().addAll(imageDisplay, titleDisplay, priceDisplay, controlsDisplay);
 
     return pane;
   }
 
-  private void populateItemDisplayPane(GridPane pane, ProductInfo product) {
+  private void populateItemDisplayPane(TreeBasedApplication tree, GridPane pane, ProductInfo product) {
     Image image = new Image(product.getImageUrl());
     ImageView view = new ImageView(image);
     pane.add(view, 0, 0);
@@ -111,7 +117,19 @@ public class ContentLayer extends ScrollableLayer {
 
     Label price = new Label(product.getPrice().value + " " + product.getPrice().currency);
     price.setWrapText(true);
+    price.getStyleClass().add("item-price");
     pane.add(price, 0, 2);
+
+    Button viewProduct = new Button("View Product");
+    viewProduct.getStyleClass().addAll("colored-button", "with-dropshadow");
+
+    viewProduct.setOnAction(new EventHandler<ActionEvent>() {
+      @Override public void handle(ActionEvent e) {
+        System.out.println("clicked");
+      }
+    });
+    
+    pane.add(viewProduct, 0, 3);
   }
 
   private void styleItemDisplayPane(GridPane pane) {

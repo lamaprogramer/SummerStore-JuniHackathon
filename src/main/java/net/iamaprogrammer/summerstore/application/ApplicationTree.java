@@ -5,12 +5,12 @@ import java.util.*;
 import net.iamaprogrammer.summerstore.application.ApplicationNode;
 
 public class ApplicationTree extends ApplicationNode {
-  public ApplicationTree(Layer root) {
-    super(root);
+  public ApplicationTree(String identifier, Layer root) {
+    super(identifier, root);
   }
   
-  public ApplicationTree(Layer root, boolean enabled) {
-    super(root, enabled);
+  public ApplicationTree(String identifier, Layer root, boolean enabled) {
+    super(identifier, root, enabled);
   }
   
   public ApplicationTree addTreeNode(ApplicationTree node) {
@@ -18,13 +18,13 @@ public class ApplicationTree extends ApplicationNode {
     return this;
   }
 
-  public ApplicationTree addNode(Layer node) {
-    this.children.add(new ApplicationNode(node));
+  public ApplicationTree addNode(String identifier, Layer node) {
+    this.children.add(new ApplicationNode(identifier, node));
     return this;
   }
 
-  public ApplicationTree addNode(Layer node, boolean enabled) {
-    this.children.add(new ApplicationNode(node, enabled));
+  public ApplicationTree addNode(String identifier, Layer node, boolean enabled) {
+    this.children.add(new ApplicationNode(identifier, node, enabled));
     return this;
   }
 }
