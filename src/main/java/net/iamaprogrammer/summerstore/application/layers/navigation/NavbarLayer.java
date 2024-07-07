@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
+import net.iamaprogrammer.summerstore.application.Node;
 
 public class NavbarLayer extends Layer {
   Button menuButton;
@@ -21,7 +22,7 @@ public class NavbarLayer extends Layer {
     super();
   }
 
-  public void init(TreeBasedApplication tree) {
+  public void init(TreeBasedApplication tree, Node node) {
     // Init Grid
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(100);

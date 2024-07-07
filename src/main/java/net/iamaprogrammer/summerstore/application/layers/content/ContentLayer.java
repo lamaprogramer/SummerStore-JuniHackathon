@@ -24,6 +24,7 @@ import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi;
 import net.iamaprogrammer.summerstore.api.ProductInfo;
 
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
+import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
@@ -51,13 +52,13 @@ public class ContentLayer extends ScrollableLayer {
     this.products = EbayBrowseApi.requestItems(ebayApi, "flower", ROW_COUNT * COLUMN_COUNT, 0);
   }
 
-  public void init(TreeBasedApplication tree) {
+  public void init(TreeBasedApplication tree, Node node) {
     for (int i = 0; i < products.size(); i++) {
       int row = i / ROW_COUNT;
       int column = i % COLUMN_COUNT;
 
       GridPane pane = this.setupItemDisplayPane();
-      this.populateItemDisplayPane(tree, pane, products.get(i));
+      this.populateItemDisplayPane(tree, node, pane, products.get(i));
       this.styleItemDisplayPane(pane);
 
       this.grid.add(pane, row, column);
@@ -105,7 +106,7 @@ public class ContentLayer extends ScrollableLayer {
     return pane;
   }
 
-  private void populateItemDisplayPane(TreeBasedApplication tree, GridPane pane, ProductInfo product) {
+  private void populateItemDisplayPane(TreeBasedApplication tree, Node node, GridPane pane, ProductInfo product) {
     Image image = new Image(product.getImageUrl());
     ImageView view = new ImageView(image);
     pane.add(view, 0, 0);
@@ -126,9 +127,10 @@ public class ContentLayer extends ScrollableLayer {
     viewProduct.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {
         System.out.println("clicked");
+        node.switchTo("product_info");
       }
     });
-    
+
     pane.add(viewProduct, 0, 3);
   }
 

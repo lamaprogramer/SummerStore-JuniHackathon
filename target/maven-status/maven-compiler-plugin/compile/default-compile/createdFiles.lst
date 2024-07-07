@@ -1,12 +1,13 @@
 net/iamaprogrammer/summerstore/application/layers/BaseLayer.class
+net/iamaprogrammer/summerstore/application/Node.class
 net/iamaprogrammer/summerstore/application/ScrollableLayer.class
 net/iamaprogrammer/summerstore/application/layers/content/ContentLayer$1.class
+net/iamaprogrammer/summerstore/application/layers/content/ProductLayer.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication$ApplicationBuilder.class
 net/iamaprogrammer/summerstore/api/ebay/EbayBrowseApi.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication.class
 net/iamaprogrammer/summerstore/api/ProductInfo$Price.class
 net/iamaprogrammer/summerstore/api/ProductInfo.class
-net/iamaprogrammer/summerstore/application/ApplicationNode.class
 net/iamaprogrammer/summerstore/application/Layer.class
 net/iamaprogrammer/summerstore/Main.class
 net/iamaprogrammer/summerstore/application/layers/content/ContentLayer.class

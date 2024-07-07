@@ -2,9 +2,9 @@ package net.iamaprogrammer.summerstore.application;
 
 import java.util.*;
 
-import net.iamaprogrammer.summerstore.application.ApplicationNode;
+import net.iamaprogrammer.summerstore.application.Node;
 
-public class ApplicationTree extends ApplicationNode {
+public class ApplicationTree extends Node {
   public ApplicationTree(String identifier, Layer root) {
     super(identifier, root);
   }
@@ -19,12 +19,12 @@ public class ApplicationTree extends ApplicationNode {
   }
 
   public ApplicationTree addNode(String identifier, Layer node) {
-    this.children.add(new ApplicationNode(identifier, node));
+    this.children.add(new Node(identifier, node));
     return this;
   }
 
   public ApplicationTree addNode(String identifier, Layer node, boolean enabled) {
-    this.children.add(new ApplicationNode(identifier, node, enabled));
+    this.children.add(new Node(identifier, node, enabled));
     return this;
   }
 }

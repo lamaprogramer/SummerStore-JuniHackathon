@@ -4,10 +4,10 @@ import java.util.*;
 
 import javafx.scene.Scene; 
 
-import net.iamaprogrammer.summerstore.application.ApplicationNode;
+import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.ApplicationTree;
 
-public class TreeBasedApplication extends ApplicationNode {
+public class TreeBasedApplication extends Node {
   protected TreeBasedApplication(ApplicationBuilder builder) {
     super(builder.identifier, builder.node);
     this.parent = builder.parent;
@@ -24,9 +24,9 @@ public class TreeBasedApplication extends ApplicationNode {
     return new Scene(this.node.grid, width, height);
   }
 
-  public ApplicationNode getNodeAtPath(String path) {
+  public Node getNodeAtPath(String path) {
     String[] pathArray = path.split("/");
-    ApplicationNode node = this;
+    Node node = this;
 
     for (int i = 0; i < pathArray.length; i++) {
       node = node.getChild(pathArray[i]);
@@ -36,24 +36,24 @@ public class TreeBasedApplication extends ApplicationNode {
   }
 
   private void initTree() {
-    Queue nodeQueue = new LinkedList<ApplicationNode>();
+    Queue nodeQueue = new LinkedList<Node>();
     nodeQueue.add(this);
 
     while (!nodeQueue.isEmpty()) {
-      ApplicationNode node = (ApplicationNode) nodeQueue.poll();
+      Node node = (Node) nodeQueue.poll();
       if (node.hasChildren()) {
-        for (ApplicationNode child : node.children) {
+        for (Node child : node.children) {
           nodeQueue.add(child.withParent(node));
         }
       }
 
-      node.getNode().init(this);
+      node.getNode().init(this, node);
       node.getNode().style();
       node.getNode().listeners();
     }
   }
 
-  public static class ApplicationBuilder extends ApplicationNode {
+  public static class ApplicationBuilder extends Node {
     public ApplicationBuilder(Layer root) {
       super("", root);
     }
@@ -64,12 +64,12 @@ public class TreeBasedApplication extends ApplicationNode {
     }
   
     public ApplicationBuilder addNode(String identifier, Layer node) {
-      this.children.add(new ApplicationNode(identifier, node));
+      this.children.add(new Node(identifier, node));
       return this;
     }
 
     public ApplicationBuilder addNode(String identifier, Layer node, boolean enabled) {
-      this.children.add(new ApplicationNode(identifier, node, enabled));
+      this.children.add(new Node(identifier, node, enabled));
       return this;
     }
   
