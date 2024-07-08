@@ -36,10 +36,41 @@ public class ProductLayer extends ScrollableLayer<ProductInfo> {
 
   public ProductLayer() {
     super();
+    
+    ColumnConstraints col = new ColumnConstraints();
+    col.setPercentWidth(25);
+
+    ColumnConstraints col2 = new ColumnConstraints();
+    col2.setPercentWidth(75);
+
+    RowConstraints row = new RowConstraints();
+    row.setPercentHeight(90);
+
+    RowConstraints row2 = new RowConstraints();
+    row2.setPercentHeight(10);
+
+    grid.getColumnConstraints().addAll(col, col2);
+    grid.getRowConstraints().addAll(row, row2);
   }
 
   public void init(TreeBasedApplication tree, Node node, ProductInfo data) {
     System.out.println(data.getTitle());
+    
+    Image image = new Image(data.getImageUrl());
+    ImageView view = new ImageView(image);
+    grid.add(view, 0, 0);
+
+    Button leaveProductInfo = new Button("Leave");
+    leaveProductInfo.getStyleClass().addAll("colored-button", "with-dropshadow");
+
+    leaveProductInfo.setOnAction(new EventHandler<ActionEvent>() {
+      @Override public void handle(ActionEvent e) {
+        node.switchTo("products", true);
+      }
+    });
+
+    grid.add(leaveProductInfo, 0, 1);
+    
     this.addToParent(0, 1);
   }
 

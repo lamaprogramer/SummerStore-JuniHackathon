@@ -126,7 +126,6 @@ public class ContentLayer extends ScrollableLayer<String> {
 
     viewProduct.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {
-        System.out.println("clicked");
         node.switchWithData("product_info", product);
       }
     });
