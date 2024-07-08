@@ -28,7 +28,7 @@ import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
-public class ContentLayer extends ScrollableLayer {
+public class ContentLayer extends ScrollableLayer<String> {
   private static final EbayOauth2Api ebayApi = new EbayOauth2Api();
   private List<ProductInfo> products = new ArrayList<>();
   private static final int COLUMN_COUNT = 3;
@@ -52,7 +52,7 @@ public class ContentLayer extends ScrollableLayer {
     this.products = EbayBrowseApi.requestItems(ebayApi, "flower", ROW_COUNT * COLUMN_COUNT, 0);
   }
 
-  public void init(TreeBasedApplication tree, Node node) {
+  public void init(TreeBasedApplication tree, Node node, String data) {
     for (int i = 0; i < products.size(); i++) {
       int row = i / ROW_COUNT;
       int column = i % COLUMN_COUNT;
@@ -127,7 +127,7 @@ public class ContentLayer extends ScrollableLayer {
     viewProduct.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {
         System.out.println("clicked");
-        node.switchTo("product_info");
+        node.switchWithData("product_info", product);
       }
     });
 

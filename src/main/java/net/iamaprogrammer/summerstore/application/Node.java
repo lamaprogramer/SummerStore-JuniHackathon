@@ -20,6 +20,10 @@ public class Node {
     this.node.setEnabled(enabled);
   }
 
+  public boolean isEnabled() {
+    return this.node.isEnabled();
+  }
+  
   public void setEnabled(boolean enabled) {
     this.node.setEnabled(enabled);
   }
@@ -35,18 +39,24 @@ public class Node {
   }
 
   public void switchTo(String identifier) {
-    if (this.parent != null) {
-      Node nodeToSwapTo = this.parent.getChild(identifier);
-      if (nodeToSwapTo != null) {
-        this.setEnabled(false);
-        nodeToSwapTo.setEnabled(true);
-      }
-    }
+    this.switchTo(identifier, false);
   }
 
-  public void clearAndSwitchTo(String identifier) {
-    this.node.clear();
-    this.switchTo(identifier);
+  public void switchTo(String identifier, boolean shouldClear) {
+    if (this.parent == null) {
+      return;
+    }
+    this.performSwap(identifier, shouldClear);
+  }
+
+  public<T> void switchWithData(String identifier, T data) {
+    if (this.parent == null) {
+      return;
+    }
+    Node nodeToSwapTo = this.performSwap(identifier, false);
+    nodeToSwapTo.getNode().init(null, nodeToSwapTo, data);
+    nodeToSwapTo.getNode().style();
+    nodeToSwapTo.getNode().listeners();
   }
 
   public String getIdentifer() {
@@ -73,5 +83,21 @@ public class Node {
 
   public boolean hasChildren() {
     return !children.isEmpty();
+  }
+
+  private Node performSwap(String identifier, boolean shouldClear) {
+    Node nodeToSwapTo = this.parent.getChild(identifier);
+    if (nodeToSwapTo == null) {
+      return null;
+    }
+
+    if (shouldClear) {
+      this.node.clear();
+    }
+
+    this.setEnabled(false);
+    nodeToSwapTo.setEnabled(true);
+
+    return nodeToSwapTo;
   }
 }

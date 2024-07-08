@@ -47,9 +47,12 @@ public class TreeBasedApplication extends Node {
         }
       }
 
-      node.getNode().init(this, node);
-      node.getNode().style();
-      node.getNode().listeners();
+      if (node.isEnabled()) {
+        //System.out.println("Node: " + node.getIdentifer());
+        node.getNode().init(this, node, null);
+        node.getNode().style();
+        node.getNode().listeners();
+      }
     }
   }
 

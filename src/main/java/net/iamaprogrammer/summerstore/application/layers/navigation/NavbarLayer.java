@@ -13,7 +13,7 @@ import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 
-public class NavbarLayer extends Layer {
+public class NavbarLayer extends Layer<String> {
   Button menuButton;
   Label brand;
 
@@ -22,7 +22,7 @@ public class NavbarLayer extends Layer {
     super();
   }
 
-  public void init(TreeBasedApplication tree, Node node) {
+  public void init(TreeBasedApplication tree, Node node, String data) {
     // Init Grid
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(100);

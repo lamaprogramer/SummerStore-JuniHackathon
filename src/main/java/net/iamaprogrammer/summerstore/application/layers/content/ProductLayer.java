@@ -28,7 +28,7 @@ import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
-public class ProductLayer extends ScrollableLayer {
+public class ProductLayer extends ScrollableLayer<ProductInfo> {
   private static final EbayOauth2Api ebayApi = new EbayOauth2Api();
   private List<ProductInfo> products = new ArrayList<>();
   private static final int COLUMN_COUNT = 3;
@@ -38,7 +38,8 @@ public class ProductLayer extends ScrollableLayer {
     super();
   }
 
-  public void init(TreeBasedApplication tree, Node node) {
+  public void init(TreeBasedApplication tree, Node node, ProductInfo data) {
+    System.out.println(data.getTitle());
     this.addToParent(0, 1);
   }
 
