@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 import net.iamaprogrammer.summerstore.application.layers.content.ContentLayer;
 import net.iamaprogrammer.summerstore.application.layers.product.ProductLayer;
 import net.iamaprogrammer.summerstore.application.layers.product.grid.ProductTitleLayer;
+import net.iamaprogrammer.summerstore.application.layers.product.grid.ProductDescriptionLayer;
+
 import net.iamaprogrammer.summerstore.application.layers.controls.ControlsLayer;
 import net.iamaprogrammer.summerstore.application.layers.navigation.NavbarLayer;
 import net.iamaprogrammer.summerstore.application.layers.BaseLayer;
@@ -45,6 +47,7 @@ public class Main extends Application {
       , 0, 1)
       .addTreeNode(new ApplicationTree("product_info", new ProductLayer(), false)
         .addNode("product_title", new ProductTitleLayer(), 0, 0)
+        .addNode("product_description", new ProductDescriptionLayer(), 1, 0)
       , 0, 1)
       .init();
 
