@@ -20,7 +20,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import net.iamaprogrammer.summerstore.application.layers.content.ContentLayer;
-import net.iamaprogrammer.summerstore.application.layers.content.ProductLayer;
+import net.iamaprogrammer.summerstore.application.layers.product.ProductLayer;
+import net.iamaprogrammer.summerstore.application.layers.product.grid.ProductTitleLayer;
 import net.iamaprogrammer.summerstore.application.layers.controls.ControlsLayer;
 import net.iamaprogrammer.summerstore.application.layers.navigation.NavbarLayer;
 import net.iamaprogrammer.summerstore.application.layers.BaseLayer;
@@ -38,11 +39,13 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
     TreeBasedApplication application = TreeBasedApplication.builder(new BaseLayer())
-      .addNode("navbar", new NavbarLayer())
+      .addNode("navbar", new NavbarLayer(), 0, 0)
       .addTreeNode(new ApplicationTree("products", new ContentLayer())
 
-      )
-      .addNode("product_info", new ProductLayer(), false)
+      , 0, 1)
+      .addTreeNode(new ApplicationTree("product_info", new ProductLayer(), false)
+        .addNode("product_title", new ProductTitleLayer(), 0, 0)
+      , 0, 1)
       .init();
 
     Scene scene = application.getScene(960, 540);

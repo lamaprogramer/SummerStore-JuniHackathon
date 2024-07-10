@@ -20,22 +20,22 @@ public class Node {
     this.node.setEnabled(enabled);
   }
 
-  public boolean isEnabled() {
-    return this.node.isEnabled();
-  }
-  
-  public void setEnabled(boolean enabled) {
-    this.node.setEnabled(enabled);
-  }
+  public<T> void initApplicationNodes(T data) {
+    this.node.init(this, data);
+    this.node.style();
+    this.node.listeners();
 
-  public Node getChild(String identifier) {
-    for (Node child : this.children) {
-      if (child.getIdentifer().equals(identifier)) {
-        return child;
-      }
+    if (!this.hasChildren()) {
+      return;
     }
-
-    return null;
+    
+    for (Node child : this.children) {
+      if (!child.isEnabled()) {
+        continue;
+      }
+      
+      child.initApplicationNodes(data);
+    }
   }
 
   public void switchTo(String identifier) {
@@ -54,9 +54,7 @@ public class Node {
       return;
     }
     Node nodeToSwapTo = this.performSwap(identifier, false);
-    nodeToSwapTo.getNode().init(null, nodeToSwapTo, data);
-    nodeToSwapTo.getNode().style();
-    nodeToSwapTo.getNode().listeners();
+    nodeToSwapTo.initApplicationNodes(data);
   }
 
   public String getIdentifer() {
@@ -71,18 +69,52 @@ public class Node {
     return parent;
   }
 
-  public boolean hasParent() {
-    return parent != null;
+  public Node getChild(String identifier) {
+    for (Node child : this.children) {
+      if (child.getIdentifer().equals(identifier)) {
+        return child;
+      }
+    }
+    return null;
   }
 
-  public Node withParent(Node parent) {
+  public void setEnabled(boolean enabled) {
+    this.node.setEnabled(enabled);
+  }
+
+  public Node withParent(Node parent, int row, int column) {
     this.parent = parent;
     this.node.setParent(parent.getNode());
+    this.node.addToParent(row, column);
     return this;
   }
 
   public boolean hasChildren() {
     return !children.isEmpty();
+  }
+
+  public boolean hasParent() {
+    return parent != null;
+  }
+
+  public boolean isEnabled() {
+    return this.node.isEnabled();
+  }
+
+  public void clearNode() {
+    this.node.clear(this);
+  }
+
+  private void performClear() {
+    this.clearNode();
+
+    if (!this.hasChildren()) {
+      return;
+    }
+
+    for (Node child : this.children) {
+      child.clearNode();
+    }
   }
 
   private Node performSwap(String identifier, boolean shouldClear) {
@@ -92,12 +124,11 @@ public class Node {
     }
 
     if (shouldClear) {
-      this.node.clear();
+      this.performClear();
     }
 
     this.setEnabled(false);
     nodeToSwapTo.setEnabled(true);
-
     return nodeToSwapTo;
   }
 }

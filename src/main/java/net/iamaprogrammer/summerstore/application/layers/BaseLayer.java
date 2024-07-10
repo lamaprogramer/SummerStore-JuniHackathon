@@ -21,7 +21,7 @@ public class BaseLayer extends Layer<String> {
     super();
   }
   
-  public void init(TreeBasedApplication tree, Node node, String data) {
+  public void init(Node node, String data) {
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(10);
     RowConstraints row2 = new RowConstraints();

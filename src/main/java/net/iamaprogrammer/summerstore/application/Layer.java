@@ -1,5 +1,7 @@
 package net.iamaprogrammer.summerstore.application;
 
+import java.util.*;
+
 import javafx.scene.layout.GridPane;
 
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
@@ -30,11 +32,16 @@ public class Layer<T> {
     this.grid.setManaged(enabled);
   }
 
-  public void clear() {
-    this.grid.getChildren().clear();
+  public void clear(Node node) {
+    List<javafx.scene.Node> blacklist = new ArrayList<>();
+    for (Node childNode : node.children) {
+      blacklist.add(childNode.node.grid);
+    }
+    
+    this.grid.getChildren().removeIf(child -> !blacklist.contains(child));
   }
 
-  public void init(TreeBasedApplication tree, Node node, T data) {}
+  public void init(Node node, T data) {}
   public void style() {}
   public void listeners() {}
 }

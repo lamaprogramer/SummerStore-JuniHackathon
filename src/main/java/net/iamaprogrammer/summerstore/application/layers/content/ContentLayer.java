@@ -52,20 +52,19 @@ public class ContentLayer extends ScrollableLayer<String> {
     this.products = EbayBrowseApi.requestItems(ebayApi, "flower", ROW_COUNT * COLUMN_COUNT, 0);
   }
 
-  public void init(TreeBasedApplication tree, Node node, String data) {
+  public void init(Node node, String data) {
     for (int i = 0; i < products.size(); i++) {
       int row = i / ROW_COUNT;
       int column = i % COLUMN_COUNT;
 
       GridPane pane = this.setupItemDisplayPane();
-      this.populateItemDisplayPane(tree, node, pane, products.get(i));
+      this.populateItemDisplayPane(node, pane, products.get(i));
       this.styleItemDisplayPane(pane);
 
       this.grid.add(pane, row, column);
     }
 
     this.grid.setAlignment(Pos.CENTER);
-    this.addToParent(0, 1);
   }
 
   public void style() {
@@ -106,7 +105,7 @@ public class ContentLayer extends ScrollableLayer<String> {
     return pane;
   }
 
-  private void populateItemDisplayPane(TreeBasedApplication tree, Node node, GridPane pane, ProductInfo product) {
+  private void populateItemDisplayPane(Node node, GridPane pane, ProductInfo product) {
     Image image = new Image(product.getImageUrl());
     ImageView view = new ImageView(image);
     pane.add(view, 0, 0);

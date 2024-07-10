@@ -19,7 +19,7 @@ public class ControlsLayer extends Layer<String> {
     super();
   }
 
-  public void init(TreeBasedApplication tree, Node node, String data) {
+  public void init(Node node, String data) {
     // Init Grid
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(10);
@@ -36,7 +36,6 @@ public class ControlsLayer extends Layer<String> {
     grid.getColumnConstraints().addAll(col1);
 
     grid.setAlignment(Pos.CENTER); 
-    this.addToParent(0, 1);
   }
 
   public void style() {

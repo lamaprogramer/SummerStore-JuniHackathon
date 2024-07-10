@@ -22,7 +22,7 @@ public class NavbarLayer extends Layer<String> {
     super();
   }
 
-  public void init(TreeBasedApplication tree, Node node, String data) {
+  public void init(Node node, String data) {
     // Init Grid
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(100);
@@ -48,7 +48,6 @@ public class NavbarLayer extends Layer<String> {
     
     grid.add(menuButton, 0, 0);
     grid.add(brand, 1, 0);
-    this.addToParent(0, 0);
   }
 
   public void style() {

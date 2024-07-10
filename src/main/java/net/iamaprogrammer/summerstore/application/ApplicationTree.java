@@ -13,18 +13,18 @@ public class ApplicationTree extends Node {
     super(identifier, root, enabled);
   }
   
-  public ApplicationTree addTreeNode(ApplicationTree node) {
-    this.children.add(node);
+  public ApplicationTree addTreeNode(ApplicationTree node, int row, int column) {
+    this.children.add(node.withParent(this, row, column));
     return this;
   }
 
-  public ApplicationTree addNode(String identifier, Layer node) {
-    this.children.add(new Node(identifier, node));
+  public ApplicationTree addNode(String identifier, Layer node, int row, int column) {
+    this.children.add(new Node(identifier, node).withParent(this, row, column));
     return this;
   }
 
-  public ApplicationTree addNode(String identifier, Layer node, boolean enabled) {
-    this.children.add(new Node(identifier, node, enabled));
+  public ApplicationTree addNode(String identifier, Layer node, boolean enabled, int row, int column) {
+    this.children.add(new Node(identifier, node, enabled).withParent(this, row, column));
     return this;
   }
 }

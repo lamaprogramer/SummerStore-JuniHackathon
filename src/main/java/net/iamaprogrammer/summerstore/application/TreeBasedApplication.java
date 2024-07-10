@@ -13,7 +13,8 @@ public class TreeBasedApplication extends Node {
     this.parent = builder.parent;
     this.children = builder.children;
 
-    this.initTree();
+    this.initApplicationNodes(null);
+    //this.initTree();
   }
 
   public static ApplicationBuilder builder(Layer root) {
@@ -43,13 +44,13 @@ public class TreeBasedApplication extends Node {
       Node node = (Node) nodeQueue.poll();
       if (node.hasChildren()) {
         for (Node child : node.children) {
-          nodeQueue.add(child.withParent(node));
+          nodeQueue.add(child);
         }
       }
 
       if (node.isEnabled()) {
         //System.out.println("Node: " + node.getIdentifer());
-        node.getNode().init(this, node, null);
+        node.getNode().init(node, null);
         node.getNode().style();
         node.getNode().listeners();
       }
@@ -61,18 +62,18 @@ public class TreeBasedApplication extends Node {
       super("", root);
     }
   
-    public ApplicationBuilder addTreeNode(ApplicationTree node) {
-      this.children.add(node);
+    public ApplicationBuilder addTreeNode(ApplicationTree node, int row, int column) {
+      this.children.add(node.withParent(this, row, column));
       return this;
     }
   
-    public ApplicationBuilder addNode(String identifier, Layer node) {
-      this.children.add(new Node(identifier, node));
+    public ApplicationBuilder addNode(String identifier, Layer node, int row, int column) {
+      this.children.add(new Node(identifier, node).withParent(this, row, column));
       return this;
     }
 
-    public ApplicationBuilder addNode(String identifier, Layer node, boolean enabled) {
-      this.children.add(new Node(identifier, node, enabled));
+    public ApplicationBuilder addNode(String identifier, Layer node, boolean enabled, int row, int column) {
+      this.children.add(new Node(identifier, node, enabled).withParent(this, row, column));
       return this;
     }
   

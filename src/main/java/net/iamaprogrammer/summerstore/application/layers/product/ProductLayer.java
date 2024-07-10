@@ -1,4 +1,4 @@
-package net.iamaprogrammer.summerstore.application.layers.content;
+package net.iamaprogrammer.summerstore.application.layers.product;
 
 import java.util.*;
 
@@ -31,34 +31,25 @@ import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 public class ProductLayer extends ScrollableLayer<ProductInfo> {
   private static final EbayOauth2Api ebayApi = new EbayOauth2Api();
   private List<ProductInfo> products = new ArrayList<>();
-  private static final int COLUMN_COUNT = 3;
-  private static final int ROW_COUNT = 3;
 
   public ProductLayer() {
     super();
     
     ColumnConstraints col = new ColumnConstraints();
-    col.setPercentWidth(25);
+    col.setPercentWidth(40);
+    col.setHalignment(HPos.CENTER);
 
     ColumnConstraints col2 = new ColumnConstraints();
-    col2.setPercentWidth(75);
+    col2.setPercentWidth(60);
 
     RowConstraints row = new RowConstraints();
-    row.setPercentHeight(90);
-
-    RowConstraints row2 = new RowConstraints();
-    row2.setPercentHeight(10);
+    row.setPercentHeight(100);
 
     grid.getColumnConstraints().addAll(col, col2);
-    grid.getRowConstraints().addAll(row, row2);
+    grid.getRowConstraints().addAll(row);
   }
 
-  public void init(TreeBasedApplication tree, Node node, ProductInfo data) {
-    System.out.println(data.getTitle());
-    
-    Image image = new Image(data.getImageUrl());
-    ImageView view = new ImageView(image);
-    grid.add(view, 0, 0);
+  public void init(Node node, ProductInfo data) {
 
     Button leaveProductInfo = new Button("Leave");
     leaveProductInfo.getStyleClass().addAll("colored-button", "with-dropshadow");
@@ -69,9 +60,7 @@ public class ProductLayer extends ScrollableLayer<ProductInfo> {
       }
     });
 
-    grid.add(leaveProductInfo, 0, 1);
-    
-    this.addToParent(0, 1);
+    grid.add(leaveProductInfo, 1, 0);
   }
 
   public void style() {
