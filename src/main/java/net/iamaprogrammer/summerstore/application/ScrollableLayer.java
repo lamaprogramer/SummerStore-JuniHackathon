@@ -1,5 +1,7 @@
 package net.iamaprogrammer.summerstore.application;
 
+import java.util.*;
+
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 
@@ -16,18 +18,12 @@ public class ScrollableLayer<T> extends Layer<T> {
   }
 
   @Override
-  public void setEnabled(boolean enabled) {
-    this.scrollPane.setVisible(enabled);
-    this.scrollPane.setManaged(enabled);
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return this.scrollPane.isVisible() && this.scrollPane.isManaged();
-  }
-
-  @Override
   public void addToParent(int row, int column) {
     this.parent.grid.add(this.scrollPane, row, column);
+  }
+
+  @Override
+  public javafx.scene.Node getLayerRoot() {
+    return this.scrollPane;
   }
 }

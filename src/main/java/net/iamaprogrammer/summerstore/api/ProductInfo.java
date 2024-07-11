@@ -61,8 +61,9 @@ public class ProductInfo {
   public static class Item {
     private String subtitle;
     private String description;
+    private String imageUrl;
+    private List<String> additionalImageUrls = new ArrayList<>();
     
-
     public Item(EbayOauth2Api oauth, String url) {
       try {
         Map<String, String> headers = new HashMap<>();
@@ -77,6 +78,13 @@ public class ProductInfo {
         //System.out.println(jsonResponse);
         //this.subtitle = jsonResponse.get("subtitle").getAsString();
         this.description = jsonResponse.get("description").getAsString();
+        this.imageUrl = jsonResponse.get("image").getAsJsonObject().get("imageUrl").getAsString();
+
+        if (jsonResponse.has("additionalImages")) {
+          for (JsonElement image : jsonResponse.get("additionalImages").getAsJsonArray()) {
+            additionalImageUrls.add(image.getAsJsonObject().get("imageUrl").getAsString());
+          }
+        }
         
       } catch (Exception e) {
         e.printStackTrace();
@@ -89,6 +97,14 @@ public class ProductInfo {
 
     public String getDescription() {
       return this.description;
+    }
+
+    public String getImageUrl() {
+      return this.imageUrl;
+    }
+
+    public List<String> getAdditionalImageUrls() {
+      return this.additionalImageUrls;
     }
   }
 }

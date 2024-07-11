@@ -36,12 +36,12 @@ public class ProductTitleLayer extends Layer<ProductInfo> {
     imageDisplay.setPercentHeight(60);
 
     RowConstraints titleDisplay = new RowConstraints();
-    titleDisplay.setPercentHeight(30);
+    titleDisplay.setPercentHeight(20);
     titleDisplay.setValignment(VPos.TOP);
 
     RowConstraints priceDisplay = new RowConstraints();
-    priceDisplay.setPercentHeight(10);
-    priceDisplay.setValignment(VPos.CENTER);
+    priceDisplay.setPercentHeight(20);
+    priceDisplay.setValignment(VPos.TOP);
 
     ColumnConstraints col = new ColumnConstraints();
     col.setPercentWidth(100);
@@ -62,6 +62,11 @@ public class ProductTitleLayer extends Layer<ProductInfo> {
     title.setWrapText(true);
     title.getStyleClass().add("item-title");
     grid.add(title, 0, 1);
+
+    Label price = new Label(data.getPrice().value + " " + data.getPrice().currency);
+    price.setWrapText(true);
+    price.getStyleClass().add("item-price");
+    grid.add(price, 0, 2);
 
   }
 

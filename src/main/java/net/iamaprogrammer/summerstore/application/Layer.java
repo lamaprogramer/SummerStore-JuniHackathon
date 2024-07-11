@@ -15,6 +15,10 @@ public class Layer<T> {
     this.grid = new GridPane();
   }
 
+  public javafx.scene.Node getLayerRoot() {
+    return this.grid;
+  }
+
   public void setParent(Layer parent) {
     this.parent = parent;
   }
@@ -24,18 +28,19 @@ public class Layer<T> {
   }
 
   public boolean isEnabled() {
-    return this.grid.isVisible() && this.grid.isManaged();
+    return this.getLayerRoot().isVisible() && this.getLayerRoot().isManaged();
   }
 
   public void setEnabled(boolean enabled) {
-    this.grid.setVisible(enabled);
-    this.grid.setManaged(enabled);
+    this.getLayerRoot().setVisible(enabled);
+    this.getLayerRoot().setManaged(enabled);
   }
 
   public void clear(Node node) {
     List<javafx.scene.Node> blacklist = new ArrayList<>();
     for (Node childNode : node.children) {
-      blacklist.add(childNode.node.grid);
+      System.out.println(childNode.getIdentifer() + ": " + childNode.isEnabled());
+      blacklist.add(childNode.node.getLayerRoot());
     }
     
     this.grid.getChildren().removeIf(child -> !blacklist.contains(child));
