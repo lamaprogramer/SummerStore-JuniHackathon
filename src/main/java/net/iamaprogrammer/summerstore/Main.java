@@ -41,14 +41,14 @@ public class Main extends Application {
   @Override
   public void start(Stage stage) {
     TreeBasedApplication application = TreeBasedApplication.builder(new BaseLayer())
-      .addNode("navbar", new NavbarLayer(), 0, 0)
       .addTreeNode(new ApplicationTree("products", new ContentLayer())
 
       , 0, 1)
       .addTreeNode(new ApplicationTree("product_info", new ProductLayer(), false)
-        .addNode("product_title", new ProductTitleLayer(), 0, 0)
         .addNode("product_description", new ProductDescriptionLayer(), 1, 0)
+        .addNode("product_title", new ProductTitleLayer(), 0, 0)
       , 0, 1)
+      .addNode("navbar", new NavbarLayer(), 0, 0)
       .init();
 
     Scene scene = application.getScene(960, 540);

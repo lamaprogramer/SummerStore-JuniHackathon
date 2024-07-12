@@ -31,8 +31,11 @@ import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 public class ContentLayer extends ScrollableLayer<String> {
   private static final EbayOauth2Api ebayApi = new EbayOauth2Api();
   private List<ProductInfo> products = new ArrayList<>();
-  private static final int COLUMN_COUNT = 3;
-  private static final int ROW_COUNT = 3;
+  private final int COLUMN_COUNT = 3;
+  private final int ROW_COUNT = 3;
+  private final int limit = ROW_COUNT * COLUMN_COUNT;
+  
+  private int offset = 0;
 
   public ContentLayer() {
     super();
@@ -48,11 +51,12 @@ public class ContentLayer extends ScrollableLayer<String> {
 
     grid.setHgap(15);
     grid.setVgap(15);
-
-    this.products = EbayBrowseApi.requestItems(ebayApi, "flower", ROW_COUNT * COLUMN_COUNT, 0);
   }
 
   public void init(Node node, String data) {
+    products.clear();
+    this.products = EbayBrowseApi.requestItems(ebayApi, "flower", limit, offset);
+    
     for (int i = 0; i < products.size(); i++) {
       int row = i / ROW_COUNT;
       int column = i % COLUMN_COUNT;
@@ -69,8 +73,8 @@ public class ContentLayer extends ScrollableLayer<String> {
 
   public void style() {
     grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: red;");
-    scrollPane.setStyle("-fx-background-color: red;"); 
+    grid.setStyle("-fx-background-color: #FFFFF0;");
+    scrollPane.setStyle("-fx-background-color: #FFFFF0;"); 
   }
 
   public void listeners() {
@@ -134,6 +138,6 @@ public class ContentLayer extends ScrollableLayer<String> {
 
   private void styleItemDisplayPane(GridPane pane) {
     pane.getStyleClass().add("with-dropshadow");
-    pane.setStyle("-fx-background-color: green;");
+    pane.setStyle("-fx-background-color: #7EFF7E;");
   }
 }

@@ -1,4 +1,4 @@
-package net.iamaprogrammer.summerstore.application.layers.product;
+package net.iamaprogrammer.summerstore.application.layers.content;
 
 import java.util.*;
 
@@ -27,45 +27,21 @@ import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
+import net.iamaprogrammer.summerstore.application.layers.content.ContentLayer;
 
-public class ProductLayer extends Layer<ProductInfo> {
-  public ProductLayer() {
+public class ContentPaginationLayer extends Layer<ContentLayer> {
+
+  public ContentPaginationLayer() {
     super();
-    
-    ColumnConstraints col = new ColumnConstraints();
-    col.setPercentWidth(40);
-    col.setHalignment(HPos.CENTER);
-
-    ColumnConstraints col2 = new ColumnConstraints();
-    col2.setPercentWidth(60);
-
-    RowConstraints row = new RowConstraints();
-    row.setPercentHeight(95);
-
-    RowConstraints row2 = new RowConstraints();
-    row2.setPercentHeight(5);
-
-    grid.getColumnConstraints().addAll(col, col2);
-    grid.getRowConstraints().addAll(row, row2);
   }
 
-  public void init(Node node, ProductInfo data) {
-
-    Button leaveProductInfo = new Button("Leave");
-    leaveProductInfo.getStyleClass().addAll("colored-button", "with-dropshadow");
-
-    leaveProductInfo.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent e) {
-        node.switchTo("products", true);
-      }
-    });
-
-    grid.add(leaveProductInfo, 1, 1);
+  public void init(Node node, ContentLayer data) {
+    
   }
 
   public void style() {
     grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: purple;");
+    grid.setStyle("-fx-background-color: #FFFFF0;");
   }
 
   public void listeners() {

@@ -39,7 +39,7 @@ public class Layer<T> {
   public void clear(Node node) {
     List<javafx.scene.Node> blacklist = new ArrayList<>();
     for (Node childNode : node.children) {
-      System.out.println(childNode.getIdentifer() + ": " + childNode.isEnabled());
+      //System.out.println(childNode.getIdentifer() + ": " + childNode.isEnabled());
       blacklist.add(childNode.node.getLayerRoot());
     }
     

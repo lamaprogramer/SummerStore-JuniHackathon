@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.geometry.Insets;
 import javafx.event.ActionEvent; 
 import javafx.event.EventHandler; 
 import javafx.scene.layout.ColumnConstraints;
@@ -49,8 +50,6 @@ public class ProductTitleLayer extends Layer<ProductInfo> {
 
     grid.getColumnConstraints().add(col);
     grid.getRowConstraints().addAll(imageDisplay, titleDisplay, priceDisplay);
-
-    // might be clearing this class from parent, but then never adding it back
   }
 
   public void init(Node node, ProductInfo data) {
@@ -61,6 +60,7 @@ public class ProductTitleLayer extends Layer<ProductInfo> {
     Label title = new Label(data.getTitle());
     title.setWrapText(true);
     title.getStyleClass().add("item-title");
+    GridPane.setMargin(title, new Insets(0,50,0,50));
     grid.add(title, 0, 1);
 
     Label price = new Label(data.getPrice().value + " " + data.getPrice().currency);
@@ -72,7 +72,7 @@ public class ProductTitleLayer extends Layer<ProductInfo> {
 
   public void style() {
     grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: red;");
+    grid.setStyle("-fx-background-color: #FFFFF0;");
   }
 
   public void listeners() {

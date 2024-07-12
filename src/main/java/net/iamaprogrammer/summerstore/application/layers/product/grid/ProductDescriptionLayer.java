@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.geometry.Insets;
 import javafx.event.ActionEvent; 
 import javafx.event.EventHandler; 
 import javafx.scene.layout.ColumnConstraints;
@@ -60,23 +61,44 @@ public class ProductDescriptionLayer extends ScrollableLayer<ProductInfo> {
     view.setFitHeight(200);
     grid.add(view, 0, 0);
 
+    ScrollPane imageScrollPane = this.createAdditionalImagesDisplay(
+      data.getItem().getAdditionalImageUrls()
+    );
+    grid.add(imageScrollPane, 0, 1);
     
+    Label description = new Label("This is a placeholder description because Replit does not like JavaFX's web package, which would be needed because the item descriptions provided by eBay's API are raw HTML.");
+    description.setWrapText(true);
+    GridPane.setMargin(description, new Insets(0,50,0,50));
+    grid.add(description, 0, 2);
+
+  }
+
+  public void style() {
+    grid.getStyleClass().addAll("with-dropshadow");
+    grid.setStyle("-fx-background-color: #FFFFF0;");
+    scrollPane.setStyle("-fx-background-color: #FFFFF0;");
+  }
+
+  public void listeners() {
+
+  }
+
+  private ScrollPane createAdditionalImagesDisplay(List<String> additionalImages) {
     ScrollPane imageScrollPane = new ScrollPane();
     GridPane imageHolder = new GridPane();
-    
+
     RowConstraints row = new RowConstraints();
     row.setPercentHeight(100);
     row.setValignment(VPos.CENTER);
     imageHolder.getRowConstraints().add(row);
 
-    List<String> additionalImages = data.getItem().getAdditionalImageUrls();
     for (int i = 0; i < additionalImages.size(); i++) {
       ColumnConstraints col = new ColumnConstraints(100);
       col.setHalignment(HPos.CENTER);
       imageHolder.getColumnConstraints().add(col);
-      
+
       String imageUrl = additionalImages.get(i);
-      
+
       Image additionalImage = new Image(imageUrl);
       ImageView additionalImageView = new ImageView(additionalImage);
       additionalImageView.setPreserveRatio(true);
@@ -88,21 +110,7 @@ public class ProductDescriptionLayer extends ScrollableLayer<ProductInfo> {
     this.scrollPane.setFitToWidth(true);
     this.scrollPane.setFitToHeight(true);
     imageScrollPane.setContent(imageHolder);
-    grid.add(imageScrollPane, 0, 1);
-    
-
-    Label description = new Label("This is a placeholder description because Replit does not like JavaFX's web package, which would be needed because the item descriptions provided by eBay's API are raw HTML.");
-    description.setWrapText(true);
-    grid.add(description, 0, 2);
-
-  }
-
-  public void style() {
-    grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: blue;");
-  }
-
-  public void listeners() {
-
+    GridPane.setMargin(imageScrollPane, new Insets(0,50,0,50));
+    return imageScrollPane;
   }
 }
