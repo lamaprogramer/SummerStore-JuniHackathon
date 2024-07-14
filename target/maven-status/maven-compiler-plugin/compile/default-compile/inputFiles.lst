@@ -10,7 +10,7 @@
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/TreeBasedApplication.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/BaseLayer.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/content/ContentLayer.java
-/home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/content/grid/ContentPaginationLayer.java
+/home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/content/grid/DisplayContentLayer.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/controls/ControlsLayer.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/navigation/NavbarLayer.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/product/ProductLayer.java

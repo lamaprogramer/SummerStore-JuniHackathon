@@ -28,7 +28,7 @@ import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
-public class ProductLayer extends Layer<ProductInfo> {
+public class ProductLayer extends Layer<ProductInfo, Void> {
   public ProductLayer() {
     super();
     
@@ -49,18 +49,26 @@ public class ProductLayer extends Layer<ProductInfo> {
     grid.getRowConstraints().addAll(row, row2);
   }
 
-  public void init(Node node, ProductInfo data) {
+  public Void init(Node node, ProductInfo data) {
 
     Button leaveProductInfo = new Button("Leave");
     leaveProductInfo.getStyleClass().addAll("colored-button", "with-dropshadow");
 
     leaveProductInfo.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {
-        node.switchTo("products", true);
+        node.switchTo(node.getParent(), "products", true);
       }
     });
 
     grid.add(leaveProductInfo, 1, 1);
+
+    return null;
+  }
+
+  @Override
+  protected void onDataPassed(Node node, ProductInfo data) {
+    System.out.println("Data passed: " + data.getTitle());
+    node.initApplicationNodes(data, true);
   }
 
   public void style() {

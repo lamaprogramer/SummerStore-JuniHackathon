@@ -29,7 +29,7 @@ import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
-public class ProductTitleLayer extends Layer<ProductInfo> {
+public class ProductTitleLayer extends Layer<ProductInfo, Void> {
   public ProductTitleLayer() {
     super();
 
@@ -52,7 +52,7 @@ public class ProductTitleLayer extends Layer<ProductInfo> {
     grid.getRowConstraints().addAll(imageDisplay, titleDisplay, priceDisplay);
   }
 
-  public void init(Node node, ProductInfo data) {
+  public Void init(Node node, ProductInfo data) {
     Image image = new Image(data.getImageUrl());
     ImageView view = new ImageView(image);
     grid.add(view, 0, 0);
@@ -68,6 +68,7 @@ public class ProductTitleLayer extends Layer<ProductInfo> {
     price.getStyleClass().add("item-price");
     grid.add(price, 0, 2);
 
+    return null;
   }
 
   public void style() {

@@ -7,7 +7,7 @@ import javafx.scene.layout.GridPane;
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 
-public class Layer<T> {
+public class Layer<I, O> {
   public GridPane grid;
   public Layer parent;
 
@@ -46,7 +46,13 @@ public class Layer<T> {
     this.grid.getChildren().removeIf(child -> !blacklist.contains(child));
   }
 
-  public void init(Node node, T data) {}
+  protected void onDataPassed(Node node, I data) {
+    //System.out.println("Data passed:");
+  }
+
+  public O init(Node node, I data) {
+    return null;
+  }
   public void style() {}
   public void listeners() {}
 }

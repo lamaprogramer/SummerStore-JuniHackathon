@@ -13,13 +13,13 @@ import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 
-public class ControlsLayer extends Layer<String> {
+public class ControlsLayer extends Layer<String, Void> {
 
   public ControlsLayer() {
     super();
   }
 
-  public void init(Node node, String data) {
+  public Void init(Node node, String data) {
     // Init Grid
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(10);
@@ -36,6 +36,8 @@ public class ControlsLayer extends Layer<String> {
     grid.getColumnConstraints().addAll(col1);
 
     grid.setAlignment(Pos.CENTER); 
+
+    return null;
   }
 
   public void style() {

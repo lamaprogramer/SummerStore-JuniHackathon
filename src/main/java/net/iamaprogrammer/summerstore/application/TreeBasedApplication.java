@@ -36,27 +36,6 @@ public class TreeBasedApplication extends Node {
     return node;
   }
 
-  private void initTree() {
-    Queue nodeQueue = new LinkedList<Node>();
-    nodeQueue.add(this);
-
-    while (!nodeQueue.isEmpty()) {
-      Node node = (Node) nodeQueue.poll();
-      if (node.hasChildren()) {
-        for (Node child : node.children) {
-          nodeQueue.add(child);
-        }
-      }
-
-      if (node.isEnabled()) {
-        //System.out.println("Node: " + node.getIdentifer());
-        node.getNode().init(node, null);
-        node.getNode().style();
-        node.getNode().listeners();
-      }
-    }
-  }
-
   public static class ApplicationBuilder extends Node {
     public ApplicationBuilder(Layer root) {
       super("", root);

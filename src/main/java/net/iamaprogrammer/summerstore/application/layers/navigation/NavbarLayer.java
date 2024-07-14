@@ -13,17 +13,14 @@ import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 
-public class NavbarLayer extends Layer<String> {
+public class NavbarLayer extends Layer<String, Void> {
   Button menuButton;
   Label brand;
 
   
   public NavbarLayer() {
     super();
-  }
 
-  public void init(Node node, String data) {
-    // Init Grid
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(100);
 
@@ -39,15 +36,20 @@ public class NavbarLayer extends Layer<String> {
 
     grid.getRowConstraints().addAll(row1);
     grid.getColumnConstraints().addAll(col1, col2, col3);
-    
-    grid.setAlignment(Pos.CENTER); 
 
+    grid.setAlignment(Pos.CENTER); 
+  }
+
+  public Void init(Node node, String data) {
+    // Init Grid
     menuButton = new Button("Menu");
     brand = new Label("Summer Store");
 
     
     grid.add(menuButton, 0, 0);
     grid.add(brand, 1, 0);
+
+    return null;
   }
 
   public void style() {

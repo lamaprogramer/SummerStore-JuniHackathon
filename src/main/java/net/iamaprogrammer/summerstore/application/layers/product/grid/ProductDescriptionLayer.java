@@ -30,7 +30,7 @@ import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
-public class ProductDescriptionLayer extends ScrollableLayer<ProductInfo> {
+public class ProductDescriptionLayer extends ScrollableLayer<ProductInfo, Void> {
   public ProductDescriptionLayer() {
     super();
 
@@ -51,9 +51,10 @@ public class ProductDescriptionLayer extends ScrollableLayer<ProductInfo> {
     grid.setVgap(15);
   }
 
-  public void init(Node node, ProductInfo data) {
+  public Void init(Node node, ProductInfo data) {
     //WebView webView = new WebView();
     //webView.getEngine().loadContent(data.getItem().getDescription());
+    System.out.println("init");
     Image image = new Image(data.getItem().getImageUrl());
     ImageView view = new ImageView(image);
     view.setPreserveRatio(true);
@@ -71,6 +72,7 @@ public class ProductDescriptionLayer extends ScrollableLayer<ProductInfo> {
     GridPane.setMargin(description, new Insets(0,50,0,50));
     grid.add(description, 0, 2);
 
+    return null;
   }
 
   public void style() {
