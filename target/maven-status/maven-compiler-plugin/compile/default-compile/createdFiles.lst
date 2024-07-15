@@ -1,5 +1,6 @@
 net/iamaprogrammer/summerstore/util/HttpUtil.class
 net/iamaprogrammer/summerstore/application/layers/BaseLayer.class
+net/iamaprogrammer/summerstore/application/layers/content/grid/ContentPaginationLayer.class
 net/iamaprogrammer/summerstore/application/Node.class
 net/iamaprogrammer/summerstore/application/layers/product/ProductLayer$1.class
 net/iamaprogrammer/summerstore/application/layers/content/grid/DisplayContentLayer$1.class
