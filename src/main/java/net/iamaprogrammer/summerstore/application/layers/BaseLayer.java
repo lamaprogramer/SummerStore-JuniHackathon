@@ -9,13 +9,13 @@ import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 
-public class BaseLayer extends Layer<String, Void> {
+public class BaseLayer extends Layer<Void, Void> {
   
   public BaseLayer() {
     super();
   }
   
-  public Void init(Node node, String data) {
+  public Void init(Node node, Void data) {
     RowConstraints row1 = new RowConstraints();
     row1.setPercentHeight(10);
     RowConstraints row2 = new RowConstraints();
@@ -33,9 +33,5 @@ public class BaseLayer extends Layer<String, Void> {
   
   public void style() {
     grid.setStyle("-fx-background-color: #FFFFFB;"); 
-  }
-  
-  public void listeners() {
-    
   }
 }

@@ -27,7 +27,6 @@ public class Node {
   public<I> void initApplicationNodes(I data, boolean useSameData) {
     Object dataToPass = this.node.init(this, data);
     this.node.style();
-    this.node.listeners();
 
     if (!this.hasChildren()) {
       return;

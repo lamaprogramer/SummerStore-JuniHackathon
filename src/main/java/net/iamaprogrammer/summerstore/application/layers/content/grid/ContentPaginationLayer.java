@@ -54,7 +54,9 @@ public class ContentPaginationLayer extends Layer<LayerDataHandler, Void> {
 
   public Void init(Node node, LayerDataHandler data) {
     Button forwardButton = new Button("Forward");
+    forwardButton.getStyleClass().addAll("secondary-color", "with-dropshadow");
     Button backwardButton = new Button("Backward");
+    backwardButton.getStyleClass().addAll("secondary-color", "with-dropshadow");
 
     forwardButton.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {
@@ -92,12 +94,6 @@ public class ContentPaginationLayer extends Layer<LayerDataHandler, Void> {
   }
 
   public void style() {
-    grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: #FFFFF0;");
-    //scrollPane.setStyle("-fx-background-color: #FFFFF0;"); 
-  }
-
-  public void listeners() {
-
+    grid.getStyleClass().addAll("primary-color");
   }
 }

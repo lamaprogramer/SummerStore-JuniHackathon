@@ -12,11 +12,10 @@ import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 
-public class NavbarLayer extends Layer<String, Void> {
+public class NavbarLayer extends Layer<Void, Void> {
   Button menuButton;
   Label brand;
 
-  
   public NavbarLayer() {
     super();
 
@@ -39,12 +38,10 @@ public class NavbarLayer extends Layer<String, Void> {
     grid.setAlignment(Pos.CENTER); 
   }
 
-  public Void init(Node node, String data) {
-    // Init Grid
+  public Void init(Node node, Void data) {
     menuButton = new Button("Menu");
     brand = new Label("Summer Store");
 
-    
     grid.add(menuButton, 0, 0);
     grid.add(brand, 1, 0);
 
@@ -52,16 +49,8 @@ public class NavbarLayer extends Layer<String, Void> {
   }
 
   public void style() {
-    menuButton.getStyleClass().addAll("colored-button", "with-dropshadow");
-
-    brand.getStyleClass().addAll("with-dropshadow");
-    brand.setStyle("-fx-font-size: 2em; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to bottom right, #7EFF7E, #FFFF88);");
-
-    grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: #FFFFF0;"); 
-  }
-
-  public void listeners() {
-
+    menuButton.getStyleClass().addAll("with-dropshadow", "secondary-color");
+    brand.getStyleClass().addAll("with-dropshadow", "brand-title");
+    grid.getStyleClass().addAll("with-dropshadow", "primary-color");
   }
 }

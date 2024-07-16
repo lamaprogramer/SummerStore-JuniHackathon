@@ -67,13 +67,8 @@ public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void>
   }
 
   public void style() {
-    grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: #FFFFF0;");
-    scrollPane.setStyle("-fx-background-color: #FFFFF0;"); 
-  }
-
-  public void listeners() {
-
+    grid.getStyleClass().addAll("primary-color");
+    scrollPane.getStyleClass().addAll("primary-color");
   }
 
   private GridPane setupItemDisplayPane() {
@@ -120,7 +115,7 @@ public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void>
     pane.add(price, 0, 2);
 
     Button viewProduct = new Button("View Product");
-    viewProduct.getStyleClass().addAll("colored-button", "with-dropshadow");
+    viewProduct.getStyleClass().addAll("secondary-color", "with-dropshadow");
 
     viewProduct.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {
@@ -135,7 +130,6 @@ public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void>
   }
 
   private void styleItemDisplayPane(GridPane pane) {
-    pane.getStyleClass().add("with-dropshadow");
-    pane.setStyle("-fx-background-color: #7EFF7E;");
+    pane.getStyleClass().addAll("with-dropshadow", "accent-color");
   }
 }

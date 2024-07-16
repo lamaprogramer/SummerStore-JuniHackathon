@@ -51,5 +51,4 @@ public class Layer<I, O> {
     return null;
   }
   public void style() {}
-  public void listeners() {}
 }

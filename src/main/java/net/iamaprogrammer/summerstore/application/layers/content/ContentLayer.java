@@ -43,8 +43,6 @@ public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHan
 
   public LayerDataHandler init(Node node, LayerDataHandler data) {
     this.clearAndRequestItems();
-    
-    //node.passDataToChild("product_list", this.products);
 
     this.grid.setAlignment(Pos.CENTER);
     return new LayerDataHandler(
@@ -54,8 +52,6 @@ public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHan
 
   @Override
   protected void onDataPassed(Node node, LayerDataHandler data) {
-    System.out.println("Data passed: " + data.get(Integer.class));
-    
     this.offset += limit*data.get(Integer.class);
     this.clearAndRequestItems();
     
@@ -75,13 +71,8 @@ public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHan
   }
 
   public void style() {
-    grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: #FFFFF0;");
-    scrollPane.setStyle("-fx-background-color: #FFFFF0;"); 
-  }
-
-  public void listeners() {
-
+    grid.getStyleClass().addAll("with-dropshadow", "primary-color");
+    scrollPane.getStyleClass().addAll("primary-color");
   }
 
   private void clearAndRequestItems() {
