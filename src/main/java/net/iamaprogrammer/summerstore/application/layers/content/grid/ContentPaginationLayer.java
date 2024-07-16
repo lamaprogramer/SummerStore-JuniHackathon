@@ -20,7 +20,8 @@ import javafx.stage.Stage;
 import com.google.gson.*;
 
 import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
-import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi;
+import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi.*;
+
 import net.iamaprogrammer.summerstore.api.ProductInfo;
 
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
@@ -28,7 +29,12 @@ import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
-public class ContentPaginationLayer extends Layer<List<ProductInfo>, Void> {
+import net.iamaprogrammer.summerstore.application.datahandlers.LayerDataHandler;
+import net.iamaprogrammer.summerstore.application.datahandlers.DataType;
+
+public class ContentPaginationLayer extends Layer<LayerDataHandler, Void> {
+  Label pagesLabel;
+  
   public ContentPaginationLayer() {
     super();
 
@@ -43,6 +49,7 @@ public class ContentPaginationLayer extends Layer<List<ProductInfo>, Void> {
 
     ColumnConstraints pages = new ColumnConstraints();
     pages.setPercentWidth(40);
+    pages.setHalignment(HPos.CENTER);
 
     ColumnConstraints forwardButton = new ColumnConstraints();
     forwardButton.setPercentWidth(10);
@@ -54,19 +61,48 @@ public class ContentPaginationLayer extends Layer<List<ProductInfo>, Void> {
     grid.getColumnConstraints().addAll(deadSpace1, backwardButton, pages, forwardButton, deadSpace2);
   }
 
-  public Void init(Node node, List<ProductInfo> data) {
+  public Void init(Node node, LayerDataHandler data) {
     Button forwardButton = new Button("Forward");
     Button backwardButton = new Button("Backward");
 
+    forwardButton.setOnAction(new EventHandler<ActionEvent>() {
+      @Override public void handle(ActionEvent e) {
+        node.passDataToParent( 
+          new LayerDataHandler(new DataType<>(1))
+        );
+      }
+    });
+
+    backwardButton.setOnAction(new EventHandler<ActionEvent>() {
+      @Override public void handle(ActionEvent e) {
+        node.passDataToParent( 
+          new LayerDataHandler(new DataType<>(-1))
+        );
+      }
+    });
+    List<ProductInfo> products = data.get(List.class);
+    PaginationInfo paginationInfo = products.get(0).getPaginationInfo();
+    
+    pagesLabel = new Label(paginationInfo.getOffset()/paginationInfo.getLimit() + " of " + paginationInfo.getItemCount()/paginationInfo.getLimit());
+
     grid.add(backwardButton, 1, 0);
+    grid.add(pagesLabel, 2, 0);
     grid.add(forwardButton, 3, 0);
     
     return null;
   }
 
+  @Override
+  protected void onDataPassed(Node node, LayerDataHandler data) {
+    List<ProductInfo> products = data.get(List.class);
+    PaginationInfo paginationInfo = products.get(0).getPaginationInfo();
+
+    pagesLabel = new Label("Page " + (paginationInfo.getOffset()/paginationInfo.getLimit())+1 + " of " + paginationInfo.getItemCount()/paginationInfo.getLimit());
+  }
+
   public void style() {
     grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: red");
+    grid.setStyle("-fx-background-color: #FFFFF0;");
     //scrollPane.setStyle("-fx-background-color: #FFFFF0;"); 
   }
 

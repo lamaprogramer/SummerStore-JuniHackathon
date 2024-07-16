@@ -28,7 +28,10 @@ import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
-public class ContentLayer extends ScrollableLayer<String, List<ProductInfo>> {
+import net.iamaprogrammer.summerstore.application.datahandlers.LayerDataHandler;
+import net.iamaprogrammer.summerstore.application.datahandlers.DataType;
+
+public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHandler> {
   private static final EbayOauth2Api ebayApi = new EbayOauth2Api();
   private List<ProductInfo> products = new ArrayList<>();
   private final int COLUMN_COUNT = 3;
@@ -48,14 +51,37 @@ public class ContentLayer extends ScrollableLayer<String, List<ProductInfo>> {
     grid.getRowConstraints().addAll(row, row2);
   }
 
-  public List<ProductInfo> init(Node node, String data) {
-    products.clear();
-    this.products = EbayBrowseApi.requestItems(ebayApi, "flower%20pool", limit, offset);
+  public LayerDataHandler init(Node node, LayerDataHandler data) {
+    this.clearAndRequestItems();
     
     //node.passDataToChild("product_list", this.products);
 
     this.grid.setAlignment(Pos.CENTER);
-    return this.products;
+    return new LayerDataHandler(
+      new DataType<>(this.products)
+    );
+  }
+
+  @Override
+  protected void onDataPassed(Node node, LayerDataHandler data) {
+    System.out.println("Data passed: " + data.get(Integer.class));
+    
+    this.offset += limit*data.get(Integer.class);
+    this.clearAndRequestItems();
+    
+    Node productList = node.getChild("product_list");
+    productList.clearNode();
+    productList.initApplicationNodes(
+      new LayerDataHandler(
+        new DataType<>(this.products)
+    ), true);
+
+    Node productPagination = node.getChild("product_pagination");
+    productPagination.clearNode();
+    productPagination.initApplicationNodes(
+      new LayerDataHandler(
+        new DataType<>(this.products)
+    ), true);
   }
 
   public void style() {
@@ -66,5 +92,10 @@ public class ContentLayer extends ScrollableLayer<String, List<ProductInfo>> {
 
   public void listeners() {
 
+  }
+
+  private void clearAndRequestItems() {
+    products.clear();
+    this.products = EbayBrowseApi.requestItems(ebayApi, "flower", limit, offset);
   }
 }

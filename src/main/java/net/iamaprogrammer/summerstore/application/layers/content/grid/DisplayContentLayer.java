@@ -28,7 +28,10 @@ import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 
-public class DisplayContentLayer extends ScrollableLayer<List<ProductInfo>, Void> {
+import net.iamaprogrammer.summerstore.application.datahandlers.LayerDataHandler;
+import net.iamaprogrammer.summerstore.application.datahandlers.DataType;
+
+public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void> {
   private final int COLUMN_COUNT = 3;
   private final int ROW_COUNT = 3;
 
@@ -48,7 +51,9 @@ public class DisplayContentLayer extends ScrollableLayer<List<ProductInfo>, Void
     grid.setVgap(15);
   }
 
-  public Void init(Node node, List<ProductInfo> products) {
+  public Void init(Node node, LayerDataHandler data) {
+    List<ProductInfo> products = data.get(List.class);
+    
     for (int i = 0; i < products.size(); i++) {
       int row = i / ROW_COUNT;
       int column = i % COLUMN_COUNT;
@@ -73,11 +78,6 @@ public class DisplayContentLayer extends ScrollableLayer<List<ProductInfo>, Void
 
   public void listeners() {
 
-  }
-
-  @Override
-  protected void onDataPassed(Node node, List<ProductInfo> data) {
-    System.out.println("Data passed: " + data);
   }
 
   private GridPane setupItemDisplayPane() {

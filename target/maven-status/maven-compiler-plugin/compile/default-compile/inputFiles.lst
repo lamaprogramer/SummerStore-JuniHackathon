@@ -8,6 +8,8 @@
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/Node.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/ScrollableLayer.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/TreeBasedApplication.java
+/home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/datahandlers/DataType.java
+/home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/datahandlers/LayerDataHandler.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/BaseLayer.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/content/ContentLayer.java
 /home/runner/SummerStore-JuniHackathon/src/main/java/net/iamaprogrammer/summerstore/application/layers/content/grid/ContentPaginationLayer.java

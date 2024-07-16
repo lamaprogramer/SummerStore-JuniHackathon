@@ -14,14 +14,16 @@ import com.google.gson.*;
 
 import net.iamaprogrammer.summerstore.util.HttpUtil;
 import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
+import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi.*;
 
 public class ProductInfo {
   private String title;
   private String imageUrl;
   private Price price;
   private Item item;
+  private PaginationInfo paginationInfo;
 
-  public ProductInfo(EbayOauth2Api oauth, JsonObject data) {
+  public ProductInfo(EbayOauth2Api oauth, JsonObject data, PaginationInfo paginationInfo) {
     this.title = data.get("title").getAsString();
     this.imageUrl = data.get("image").getAsJsonObject().get("imageUrl").getAsString();
 
@@ -30,6 +32,8 @@ public class ProductInfo {
     this.price = new Price(priceValue, priceCurrency);
 
     this.item = new Item(oauth, data.get("itemHref").getAsString());
+
+    this.paginationInfo = paginationInfo;
   }
 
   public String getTitle() {
@@ -46,6 +50,10 @@ public class ProductInfo {
 
   public Item getItem() {
     return this.item;
+  }
+
+  public PaginationInfo getPaginationInfo() {
+    return this.paginationInfo;
   }
 
   public static class Price {
