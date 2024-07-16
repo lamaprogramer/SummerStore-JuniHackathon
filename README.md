@@ -133,9 +133,9 @@ Using this library, I could create a YAML string containing my App ID, Dev ID, C
 URI, and then pass this into a method that will retrieve an application key.
 
 Now that I always had a valid application key, I began work on actually using the data I was getting.
-I created a class to store the product information I wanted and then began work on parsing the JSON 
-data. I used GSON to parse the JSON string into usable Java objects. I then went through the data
-and found the information I wanted to use, and stored it in the class I defined earlier.
+I created a class called "ProductInfo" to store the product information I wanted, and then began work 
+on parsing the JSON data. I used GSON to parse the JSON string into usable Java objects. I then went 
+through the data and found the information I wanted to use, and stored it in the class I defined earlier.
 
 Now that I had the data, I needed to display it. So added some code to display the data in a card-like 
 format. I then began work on a product-specific menu that would display the product description, additional 
@@ -148,6 +148,41 @@ menus by switching which nodes were enabled.
 Then I fixed the inability to send data between nodes. I used generics to determine what data type a Layer 
 would accept, and then pass that data type whenever menus were switched. This had multiple problems, 
 I couldn't easily pass data when the nodes were first initialized, and I could only pass one data type.
+I didn't fix this until a few days later though.
 
+I then moved on to tweak how parent nodes interact with child nodes, by cleaning up unused data
+as well as replace the Queue-based initialization method with a recursive one that could be
+used in a more versatile way.
 
+After I finished that, I started to work on designing the product pages, as well as adding an "Item"
+subclass to my "ProductInfo" class. This subclass would carry more detailed info on the product. I decided
+to display the product images and the description. Unfortunately, eBay's product descriptions use raw HTML, 
+which I can only parse using JavaFX's web package. However I don't believe Replit allows you to use that 
+package, so I had to settle for a placeholder description.
+
+Now that I had completed most of the layout, I reworked the data transfer system between nodes. Now,
+each "Layer" component has a method that is called when data is passed to it, and the "Node" components
+contain methods for sending data to other nodes. I also gave a return value to the "init()" method, 
+which will be passed down to the node's children. I gave each Layer two generic variables to define 
+what data will be input and output from the layer. I also created a "LayerDataHandler" class to handle
+the transfer of any amount of data with any amount of data types between layers.
+
+Using the data transfer system, I could now implement the last notable feature, a pagination. The 
+functionality is pretty simple, you have two buttons, one going forward, and one going backward,
+and you can use these buttons to flip through pages of products. After the pagination was implemented, 
+the only things I had time to do were to make some style changes and clean up the code a bit.
+
+I changed the secondary color of the application from a pale yellow to a lime green. Pale yellow is 
+now the accent color for some controls. I also added icons to the buttons and added a helper class to
+make styling the buttons easier.
+
+That pretty much covers the most notable parts of the development process, I think the application is at
+a point where if I had the time to add more features, I could integrate them pretty easily. Some features
+I wanted to get to but didn't have time for include: A search bar, pages of different types of summer-related 
+products, and displaying more product info. If I had a lot of time, writing an HTML parser for the product 
+descriptions could have been fun too.
+
+Overall, I'm pretty happy with how the project turned out, I learned a bunch of new stuff, such as Maven, 
+Java HTTP requests, integrating APIs, JavaFX, and GSON. I also got to use some stuff I don't normally use, 
+such as generics, nested classes, and tree-based structures.
 
