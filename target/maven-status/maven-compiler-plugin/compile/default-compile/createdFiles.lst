@@ -2,8 +2,8 @@ net/iamaprogrammer/summerstore/util/HttpUtil.class
 net/iamaprogrammer/summerstore/application/layers/BaseLayer.class
 net/iamaprogrammer/summerstore/application/layers/content/grid/ContentPaginationLayer.class
 net/iamaprogrammer/summerstore/application/Node.class
-net/iamaprogrammer/summerstore/application/layers/product/ProductLayer$1.class
 net/iamaprogrammer/summerstore/application/layers/content/grid/ContentPaginationLayer$1.class
+net/iamaprogrammer/summerstore/util/ButtonUtil.class
 net/iamaprogrammer/summerstore/application/layers/content/grid/DisplayContentLayer$1.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication.class
 net/iamaprogrammer/summerstore/api/ProductInfo$Price.class
@@ -16,6 +16,7 @@ net/iamaprogrammer/summerstore/application/ApplicationTree.class
 net/iamaprogrammer/summerstore/application/datahandlers/LayerDataHandler.class
 net/iamaprogrammer/summerstore/application/layers/product/ProductLayer.class
 net/iamaprogrammer/summerstore/application/ScrollableLayer.class
+net/iamaprogrammer/summerstore/application/layers/product/grid/ProductTitleLayer$1.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication$ApplicationBuilder.class
 net/iamaprogrammer/summerstore/api/ebay/EbayBrowseApi.class
 net/iamaprogrammer/summerstore/api/ProductInfo$Item.class

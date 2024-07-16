@@ -51,7 +51,7 @@ public class Main extends Application {
 
     Scene scene = application.getScene(960, 540);
 
-    scene.getStylesheets().add("stylesheets/main.css");
+    scene.getStylesheets().addAll("stylesheets/main.css", "stylesheets/icons.css");
     
     stage.setTitle("Summer Store"); 
     stage.setScene(scene);

@@ -31,31 +31,17 @@ public class ProductLayer extends Layer<ProductInfo, Void> {
     col.setHalignment(HPos.CENTER);
 
     ColumnConstraints col2 = new ColumnConstraints();
+    col2.setHalignment(HPos.CENTER);
     col2.setPercentWidth(60);
 
     RowConstraints row = new RowConstraints();
-    row.setPercentHeight(95);
-
-    RowConstraints row2 = new RowConstraints();
-    row2.setPercentHeight(5);
+    row.setPercentHeight(100);
 
     grid.getColumnConstraints().addAll(col, col2);
-    grid.getRowConstraints().addAll(row, row2);
+    grid.getRowConstraints().addAll(row);
   }
 
   public Void init(Node node, ProductInfo data) {
-
-    Button leaveProductInfo = new Button("Leave");
-    leaveProductInfo.getStyleClass().addAll("colored-button", "with-dropshadow");
-
-    leaveProductInfo.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent e) {
-        node.switchTo(node.getParent(), "products", true);
-      }
-    });
-
-    grid.add(leaveProductInfo, 1, 1);
-
     return null;
   }
 
@@ -66,8 +52,7 @@ public class ProductLayer extends Layer<ProductInfo, Void> {
   }
 
   public void style() {
-    grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: purple;");
+    grid.getStyleClass().addAll("with-dropshadow", "primary-color");
   }
 
   public void listeners() {

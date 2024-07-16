@@ -52,7 +52,7 @@ public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHan
 
   @Override
   protected void onDataPassed(Node node, LayerDataHandler data) {
-    this.offset += limit*data.get(Integer.class);
+    this.offset += this.offset != 0 ? this.limit*data.get(Integer.class) : 0;
     this.clearAndRequestItems();
     
     Node productList = node.getChild("product_list");

@@ -22,6 +22,7 @@ import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 import net.iamaprogrammer.summerstore.application.datahandlers.LayerDataHandler;
 import net.iamaprogrammer.summerstore.application.datahandlers.DataType;
+import net.iamaprogrammer.summerstore.util.ButtonUtil;
 
 public class ContentPaginationLayer extends Layer<LayerDataHandler, Void> {
   Label pagesLabel;
@@ -37,6 +38,7 @@ public class ContentPaginationLayer extends Layer<LayerDataHandler, Void> {
 
     ColumnConstraints backwardButton = new ColumnConstraints();
     backwardButton.setPercentWidth(10);
+      backwardButton.setHalignment(HPos.CENTER);
 
     ColumnConstraints pages = new ColumnConstraints();
     pages.setPercentWidth(40);
@@ -44,6 +46,7 @@ public class ContentPaginationLayer extends Layer<LayerDataHandler, Void> {
 
     ColumnConstraints forwardButton = new ColumnConstraints();
     forwardButton.setPercentWidth(10);
+      forwardButton.setHalignment(HPos.CENTER);
     
     ColumnConstraints deadSpace2 = new ColumnConstraints();
     deadSpace2.setPercentWidth(20);
@@ -53,10 +56,8 @@ public class ContentPaginationLayer extends Layer<LayerDataHandler, Void> {
   }
 
   public Void init(Node node, LayerDataHandler data) {
-    Button forwardButton = new Button("Forward");
-    forwardButton.getStyleClass().addAll("secondary-color", "with-dropshadow");
-    Button backwardButton = new Button("Backward");
-    backwardButton.getStyleClass().addAll("secondary-color", "with-dropshadow");
+    Button forwardButton = ButtonUtil.createIconShapedButton("caret-right-icon", "secondary-color", "with-dropshadow");
+    Button backwardButton = ButtonUtil.createIconShapedButton("caret-left-icon", "secondary-color", "with-dropshadow");
 
     forwardButton.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {

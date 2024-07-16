@@ -25,6 +25,7 @@ import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
+import net.iamaprogrammer.summerstore.util.ButtonUtil;
 
 public class ProductTitleLayer extends Layer<ProductInfo, Void> {
   public ProductTitleLayer() {
@@ -38,15 +39,19 @@ public class ProductTitleLayer extends Layer<ProductInfo, Void> {
     titleDisplay.setValignment(VPos.TOP);
 
     RowConstraints priceDisplay = new RowConstraints();
-    priceDisplay.setPercentHeight(20);
+    priceDisplay.setPercentHeight(10);
     priceDisplay.setValignment(VPos.TOP);
+
+    RowConstraints leaveButtonDisplay = new RowConstraints();
+    leaveButtonDisplay.setPercentHeight(10);
+    leaveButtonDisplay.setValignment(VPos.TOP);
 
     ColumnConstraints col = new ColumnConstraints();
     col.setPercentWidth(100);
     col.setHalignment(HPos.CENTER);
 
     grid.getColumnConstraints().add(col);
-    grid.getRowConstraints().addAll(imageDisplay, titleDisplay, priceDisplay);
+    grid.getRowConstraints().addAll(imageDisplay, titleDisplay, priceDisplay, leaveButtonDisplay);
   }
 
   public Void init(Node node, ProductInfo data) {
@@ -57,7 +62,7 @@ public class ProductTitleLayer extends Layer<ProductInfo, Void> {
     Label title = new Label(data.getTitle());
     title.setWrapText(true);
     title.getStyleClass().add("item-title");
-    GridPane.setMargin(title, new Insets(0,50,0,50));
+    GridPane.setMargin(title, new Insets(0, 50, 0, 50));
     grid.add(title, 0, 1);
 
     Label price = new Label(data.getPrice().value + " " + data.getPrice().currency);
@@ -65,12 +70,20 @@ public class ProductTitleLayer extends Layer<ProductInfo, Void> {
     price.getStyleClass().add("item-price");
     grid.add(price, 0, 2);
 
+    Button leaveProductInfo = ButtonUtil.createIconShapedButton("arrow-left-icon", "secondary-color", "with-dropshadow");
+
+    leaveProductInfo.setOnAction(new EventHandler<ActionEvent>() {
+      @Override public void handle(ActionEvent e) {
+        Node parentNode = node.getParent();
+        parentNode.switchTo(parentNode.getParent(), "products", true);
+      }
+    });
+    grid.add(leaveProductInfo, 0, 3);
     return null;
   }
 
   public void style() {
-    grid.getStyleClass().addAll("with-dropshadow");
-    grid.setStyle("-fx-background-color: #FFFFF0;");
+    grid.getStyleClass().addAll("primary-color", "with-dropshadow");
   }
 
   public void listeners() {

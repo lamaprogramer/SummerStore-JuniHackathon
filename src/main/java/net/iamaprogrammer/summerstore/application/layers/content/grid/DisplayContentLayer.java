@@ -26,6 +26,7 @@ import net.iamaprogrammer.summerstore.application.Layer;
 import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 import net.iamaprogrammer.summerstore.application.datahandlers.LayerDataHandler;
 import net.iamaprogrammer.summerstore.application.datahandlers.DataType;
+import net.iamaprogrammer.summerstore.util.ButtonUtil;
 
 public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void> {
   private final int COLUMN_COUNT = 3;
@@ -114,8 +115,7 @@ public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void>
     price.getStyleClass().add("item-price");
     pane.add(price, 0, 2);
 
-    Button viewProduct = new Button("View Product");
-    viewProduct.getStyleClass().addAll("secondary-color", "with-dropshadow");
+    Button viewProduct = ButtonUtil.createIconShapedButton("arrow-right-icon", "accent-color", "with-dropshadow");
 
     viewProduct.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {
@@ -130,6 +130,6 @@ public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void>
   }
 
   private void styleItemDisplayPane(GridPane pane) {
-    pane.getStyleClass().addAll("with-dropshadow", "accent-color");
+    pane.getStyleClass().addAll("with-dropshadow", "secondary-color");
   }
 }
