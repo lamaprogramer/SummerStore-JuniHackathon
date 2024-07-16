@@ -47,7 +47,6 @@ public class Node {
 
   public void switchTo(Node origin, String path, boolean shouldClear) {
     if (origin == null) {
-      System.out.println("Origin is null");
       return;
     }
     this.performSwap(origin, path, shouldClear);
@@ -136,8 +135,6 @@ public class Node {
       System.out.println(pathArray[i]);
       nodeToSwapTo = nodeToSwapTo.getChild(pathArray[i]);
     }
-    System.out.println("Swapping to: " + nodeToSwapTo.getIdentifer());
-    //Node nodeToSwapTo = this.parent.getChild(identifier);
     if (nodeToSwapTo == null) {
       return null;
     }

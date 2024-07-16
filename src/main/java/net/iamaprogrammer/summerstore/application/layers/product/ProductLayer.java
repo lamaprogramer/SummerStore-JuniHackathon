@@ -1,12 +1,8 @@
 package net.iamaprogrammer.summerstore.application.layers.product;
 
 import java.util.*;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;  
+ 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -15,14 +11,12 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.stage.Stage;
 
 import com.google.gson.*;
 
 import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
 import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi;
 import net.iamaprogrammer.summerstore.api.ProductInfo;
-
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;

@@ -39,16 +39,13 @@ public class Layer<I, O> {
   public void clear(Node node) {
     List<javafx.scene.Node> blacklist = new ArrayList<>();
     for (Node childNode : node.children) {
-      //System.out.println(childNode.getIdentifer() + ": " + childNode.isEnabled());
       blacklist.add(childNode.node.getLayerRoot());
     }
     
     this.grid.getChildren().removeIf(child -> !blacklist.contains(child));
   }
 
-  protected void onDataPassed(Node node, I data) {
-    //System.out.println("Data passed:");
-  }
+  protected void onDataPassed(Node node, I data) {}
 
   public O init(Node node, I data) {
     return null;

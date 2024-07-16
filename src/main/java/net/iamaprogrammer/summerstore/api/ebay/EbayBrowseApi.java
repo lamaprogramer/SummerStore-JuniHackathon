@@ -1,11 +1,7 @@
 package net.iamaprogrammer.summerstore.api.ebay;
 
 import java.util.*;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
@@ -13,7 +9,6 @@ import java.net.URL;
 import com.google.gson.*;
 
 import net.iamaprogrammer.summerstore.util.HttpUtil;
-
 import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
 import net.iamaprogrammer.summerstore.api.URLBuilder;
 import net.iamaprogrammer.summerstore.api.ProductInfo;

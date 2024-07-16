@@ -14,7 +14,6 @@ public class TreeBasedApplication extends Node {
     this.children = builder.children;
 
     this.initApplicationNodes(null);
-    //this.initTree();
   }
 
   public static ApplicationBuilder builder(Layer root) {

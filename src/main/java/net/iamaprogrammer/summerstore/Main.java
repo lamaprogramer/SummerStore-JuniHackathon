@@ -1,43 +1,22 @@
 package net.iamaprogrammer.summerstore;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import javafx.application.Application; 
 import static javafx.application.Application.launch; 
-import javafx.geometry.Insets; 
-import javafx.geometry.Pos; 
 import javafx.scene.Scene; 
-import javafx.scene.control.Button; 
-import javafx.scene.control.PasswordField; 
-import javafx.scene.layout.GridPane; 
-import javafx.scene.text.Text; 
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import net.iamaprogrammer.summerstore.application.layers.content.ContentLayer;
 import net.iamaprogrammer.summerstore.application.layers.content.grid.DisplayContentLayer;
 import net.iamaprogrammer.summerstore.application.layers.content.grid.ContentPaginationLayer;
-
 import net.iamaprogrammer.summerstore.application.layers.product.ProductLayer;
 import net.iamaprogrammer.summerstore.application.layers.product.grid.ProductTitleLayer;
 import net.iamaprogrammer.summerstore.application.layers.product.grid.ProductDescriptionLayer;
-
-import net.iamaprogrammer.summerstore.application.layers.controls.ControlsLayer;
 import net.iamaprogrammer.summerstore.application.layers.navigation.NavbarLayer;
 import net.iamaprogrammer.summerstore.application.layers.BaseLayer;
 import net.iamaprogrammer.summerstore.application.ApplicationTree;
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
-
 import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
 import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi;
-
-import com.google.gson.*;
-import com.ebay.api.client.auth.oauth2.CredentialUtil;
 
 public class Main extends Application {
   

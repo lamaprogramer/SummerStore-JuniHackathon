@@ -16,7 +16,6 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.stage.Stage;
 //import javafx.scene.web.WebView;
 
 import com.google.gson.*;
@@ -24,7 +23,6 @@ import com.google.gson.*;
 import net.iamaprogrammer.summerstore.api.ebay.EbayOauth2Api;
 import net.iamaprogrammer.summerstore.api.ebay.EbayBrowseApi;
 import net.iamaprogrammer.summerstore.api.ProductInfo;
-
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 import net.iamaprogrammer.summerstore.application.Layer;
@@ -37,9 +35,6 @@ public class ProductDescriptionLayer extends ScrollableLayer<ProductInfo, Void> 
     RowConstraints imageRow = new RowConstraints(200);
     RowConstraints additionalImagesRow = new RowConstraints(100);
     RowConstraints descriptionRow = new RowConstraints(100);
-    //titleDisplay.setPercentHeight(30);
-    //titleDisplay.setValignment(VPos.TOP);
-
 
     ColumnConstraints col = new ColumnConstraints();
     col.setPercentWidth(100);

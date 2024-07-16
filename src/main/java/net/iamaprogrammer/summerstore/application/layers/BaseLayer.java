@@ -1,15 +1,9 @@
 package net.iamaprogrammer.summerstore.application.layers;
 
-import javafx.geometry.Insets; 
 import javafx.geometry.Pos; 
-import javafx.scene.control.Button; 
-import javafx.scene.control.PasswordField; 
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Text; 
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;

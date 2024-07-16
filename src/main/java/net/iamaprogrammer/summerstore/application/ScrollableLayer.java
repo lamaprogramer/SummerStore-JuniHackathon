@@ -3,7 +3,6 @@ package net.iamaprogrammer.summerstore.application;
 import java.util.*;
 
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.GridPane;
 
 public class ScrollableLayer<I, O> extends Layer<I, O> {
   public ScrollPane scrollPane;

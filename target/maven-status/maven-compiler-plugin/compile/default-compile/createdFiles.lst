@@ -27,4 +27,3 @@ net/iamaprogrammer/summerstore/application/datahandlers/DataType.class
 net/iamaprogrammer/summerstore/application/layers/content/ContentLayer.class
 net/iamaprogrammer/summerstore/api/URLBuilder.class
 net/iamaprogrammer/summerstore/application/layers/product/grid/ProductDescriptionLayer.class
-net/iamaprogrammer/summerstore/application/layers/controls/ControlsLayer.class
