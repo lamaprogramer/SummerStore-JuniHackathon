@@ -91,5 +91,3 @@ into Java objects that I can work with. Now I can take the necessary data and pu
 multiple subclasses for storing the description and additional images.
 
 I pulled this process into its own class called "EbayBrowseApi" under the api.ebay package.
-
-******************************************************/
