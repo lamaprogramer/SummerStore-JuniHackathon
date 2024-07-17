@@ -52,7 +52,9 @@ public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHan
 
   @Override
   protected void onDataPassed(Node node, LayerDataHandler data) {
-    this.offset += this.offset != 0 ? this.limit*data.get(Integer.class) : 0;
+    int moveBy = data.get(Integer.class);
+    
+    this.offset += withinBounds(moveBy) ? this.limit*moveBy : 0;
     this.clearAndRequestItems();
     
     Node productList = node.getChild("product_list");
@@ -78,5 +80,9 @@ public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHan
   private void clearAndRequestItems() {
     products.clear();
     this.products = EbayBrowseApi.requestItems(ebayApi, "flower", limit, offset);
+  }
+
+  private boolean withinBounds(int moveBy) {
+    return !(this.offset == 0 && moveBy < 0);
   }
 }
