@@ -5,6 +5,7 @@ import java.util.*;
 import javafx.geometry.Pos;
 import javafx.event.ActionEvent; 
 import javafx.event.EventHandler; 
+import javafx.geometry.HPos;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -21,7 +22,7 @@ import net.iamaprogrammer.summerstore.application.ScrollableLayer;
 import net.iamaprogrammer.summerstore.application.datahandlers.LayerDataHandler;
 import net.iamaprogrammer.summerstore.application.datahandlers.DataType;
 
-public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHandler> {
+public class ContentLayer extends Layer<LayerDataHandler, LayerDataHandler> {
   private static final EbayOauth2Api ebayApi = new EbayOauth2Api();
   private List<ProductInfo> products = new ArrayList<>();
   private final int COLUMN_COUNT = 3;
@@ -39,6 +40,11 @@ public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHan
     RowConstraints row2 = new RowConstraints();
     row2.setPercentHeight(90);
     grid.getRowConstraints().addAll(row, row2);
+
+    ColumnConstraints col = new ColumnConstraints();
+    col.setPercentWidth(85);
+    col.setHalignment(HPos.CENTER);
+    grid.getColumnConstraints().addAll(col);
   }
 
   public LayerDataHandler init(Node node, LayerDataHandler data) {
@@ -74,7 +80,6 @@ public class ContentLayer extends ScrollableLayer<LayerDataHandler, LayerDataHan
 
   public void style() {
     grid.getStyleClass().addAll("with-dropshadow", "primary-color");
-    scrollPane.getStyleClass().addAll("primary-color");
   }
 
   private void clearAndRequestItems() {

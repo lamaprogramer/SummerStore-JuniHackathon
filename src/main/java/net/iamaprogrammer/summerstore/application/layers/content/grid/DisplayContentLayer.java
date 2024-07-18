@@ -40,7 +40,8 @@ public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void>
       grid.getRowConstraints().addAll(row);
     }
     for (int i = 0; i < COLUMN_COUNT; i++) {
-      ColumnConstraints col = new ColumnConstraints(250);
+      ColumnConstraints col = new ColumnConstraints();
+      col.setPercentWidth(100/COLUMN_COUNT);
       grid.getColumnConstraints().addAll(col);
     }
 
