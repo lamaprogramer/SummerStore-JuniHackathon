@@ -10,6 +10,10 @@
   -fx-background-color: #FFFFF0;
 }
 
+.light-primary-color {
+  -fx-background-color: #FFFFFA;
+}
+
 .scroll-bar:horizontal .track, 
 .scroll-bar:vertical .track {
   -fx-background-color: #FFFFF0;
@@ -29,6 +33,11 @@
 .scroll-bar:vertical .increment-button,
 .scroll-bar:vertical .decrement-button {
   -fx-background-color: #FFFF88;
+}
+
+.rounded-borders {
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
 }
 
 .brand-title {

@@ -131,6 +131,6 @@ public class DisplayContentLayer extends ScrollableLayer<LayerDataHandler, Void>
   }
 
   private void styleItemDisplayPane(GridPane pane) {
-    pane.getStyleClass().addAll("with-dropshadow", "secondary-color");
+    pane.getStyleClass().addAll("with-dropshadow", "secondary-color", "rounded-borders");
   }
 }

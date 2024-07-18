@@ -9,9 +9,9 @@ import net.iamaprogrammer.summerstore.application.ApplicationTree;
 
 public class TreeBasedApplication extends Node {
   protected TreeBasedApplication(ApplicationBuilder builder) {
-    super(builder.identifier, builder.node);
-    this.parent = builder.parent;
-    this.children = builder.children;
+    super(builder.getIdentifier(), builder.getNode());
+    this.parent = builder.getParent();
+    this.children = builder.getChildren();
 
     this.initApplicationNodes(null);
   }
@@ -21,7 +21,7 @@ public class TreeBasedApplication extends Node {
   }
 
   public Scene getScene(int width, int height) {
-    return new Scene(this.node.grid, width, height);
+    return new Scene(this.getNode().grid, width, height);
   }
 
   public Node getNodeAtPath(String path) {
@@ -41,17 +41,17 @@ public class TreeBasedApplication extends Node {
     }
   
     public ApplicationBuilder addTreeNode(ApplicationTree node, int row, int column) {
-      this.children.add(node.withParent(this, row, column));
+      this.getChildren().add(node.withParent(this, row, column));
       return this;
     }
   
     public ApplicationBuilder addNode(String identifier, Layer node, int row, int column) {
-      this.children.add(new Node(identifier, node).withParent(this, row, column));
+      this.getChildren().add(new Node(identifier, node).withParent(this, row, column));
       return this;
     }
 
     public ApplicationBuilder addNode(String identifier, Layer node, boolean enabled, int row, int column) {
-      this.children.add(new Node(identifier, node, enabled).withParent(this, row, column));
+      this.getChildren().add(new Node(identifier, node, enabled).withParent(this, row, column));
       return this;
     }
   

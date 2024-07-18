@@ -8,8 +8,8 @@ import net.iamaprogrammer.summerstore.application.TreeBasedApplication;
 import net.iamaprogrammer.summerstore.application.Node;
 
 public class Layer<I, O> {
-  public GridPane grid;
-  public Layer parent;
+  protected GridPane grid;
+  protected Layer parent;
 
   protected Layer() {
     this.grid = new GridPane();
@@ -38,8 +38,8 @@ public class Layer<I, O> {
 
   public void clear(Node node) {
     List<javafx.scene.Node> blacklist = new ArrayList<>();
-    for (Node childNode : node.children) {
-      blacklist.add(childNode.node.getLayerRoot());
+    for (Node childNode : node.getChildren()) {
+      blacklist.add(childNode.getNode().getLayerRoot());
     }
     
     this.grid.getChildren().removeIf(child -> !blacklist.contains(child));

@@ -7,6 +7,7 @@ net/iamaprogrammer/summerstore/util/ButtonUtil.class
 net/iamaprogrammer/summerstore/application/layers/content/grid/DisplayContentLayer$1.class
 net/iamaprogrammer/summerstore/application/TreeBasedApplication.class
 net/iamaprogrammer/summerstore/api/ProductInfo$Price.class
+net/iamaprogrammer/summerstore/application/layers/navigation/NavbarLayer$1.class
 net/iamaprogrammer/summerstore/application/layers/content/grid/ContentPaginationLayer$2.class
 net/iamaprogrammer/summerstore/Main.class
 net/iamaprogrammer/summerstore/application/layers/navigation/NavbarLayer.class

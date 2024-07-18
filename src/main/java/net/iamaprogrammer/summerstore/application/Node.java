@@ -66,7 +66,7 @@ public class Node {
     child.getNode().onDataPassed(child, data);
   }
 
-  public String getIdentifer() {
+  public String getIdentifier() {
     return this.identifier;
   }
 
@@ -78,9 +78,13 @@ public class Node {
     return parent;
   }
 
+  public List<Node> getChildren() {
+    return children;
+  }
+
   public Node getChild(String identifier) {
     for (Node child : this.children) {
-      if (child.getIdentifer().equals(identifier)) {
+      if (child.getIdentifier().equals(identifier)) {
         return child;
       }
     }
@@ -131,7 +135,6 @@ public class Node {
 
     Node nodeToSwapTo = origin;
     for (int i = 0; i < pathArray.length; i++) {
-      System.out.println(pathArray[i]);
       nodeToSwapTo = nodeToSwapTo.getChild(pathArray[i]);
     }
     if (nodeToSwapTo == null) {

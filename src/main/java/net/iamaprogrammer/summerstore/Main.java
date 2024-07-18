@@ -7,7 +7,7 @@ Github Repo:    https://github.com/lamaprogramer/SummerStore-JuniHackathon
 Hi! This is my project for the 2024 Juni-Hackathon. If you want an in-depth telling of how my 
 project works,you can check it the gGithub repository above!
 
-It will take a sec for things to load due to Replit's environment. The pagination does work, it just takes 5-10 seconds to load content.
+It will take a sec for things to load due to Replit's environment. The pagination and search bar do work, it just takes a few seconds to load content.
 
 ******************************************************/
 

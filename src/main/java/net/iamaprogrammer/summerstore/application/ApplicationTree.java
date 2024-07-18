@@ -14,17 +14,17 @@ public class ApplicationTree extends Node {
   }
   
   public ApplicationTree addTreeNode(ApplicationTree node, int row, int column) {
-    this.children.add(node.withParent(this, row, column));
+    this.getChildren().add(node.withParent(this, row, column));
     return this;
   }
 
   public ApplicationTree addNode(String identifier, Layer node, int row, int column) {
-    this.children.add(new Node(identifier, node).withParent(this, row, column));
+    this.getChildren().add(new Node(identifier, node).withParent(this, row, column));
     return this;
   }
 
   public ApplicationTree addNode(String identifier, Layer node, boolean enabled, int row, int column) {
-    this.children.add(new Node(identifier, node, enabled).withParent(this, row, column));
+    this.getChildren().add(new Node(identifier, node, enabled).withParent(this, row, column));
     return this;
   }
 }

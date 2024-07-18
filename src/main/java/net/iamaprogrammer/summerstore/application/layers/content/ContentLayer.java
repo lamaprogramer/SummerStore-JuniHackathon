@@ -63,20 +63,20 @@ public class ContentLayer extends Layer<LayerDataHandler, LayerDataHandler> {
       
       this.offset += withinBounds(moveBy) ? this.limit*moveBy : 0;
       this.clearAndRequestItems();
+
+      this.initChildren(node, 
+        new LayerDataHandler(new DataType<>(this.products))
+      );
       
-      Node productList = node.getChild("product_list");
-      productList.clearNode();
-      productList.initApplicationNodes(
-        new LayerDataHandler(
-          new DataType<>(this.products)
-      ), true);
-  
-      Node productPagination = node.getChild("product_pagination");
-      productPagination.clearNode();
-      productPagination.initApplicationNodes(
-        new LayerDataHandler(
-          new DataType<>(this.products)
-      ), true);
+    } else if (data.getDataId() == 1) {
+      this.query = data.get(String.class);
+      this.offset = 0;
+
+      this.clearAndRequestItems();
+
+      this.initChildren(node, 
+        new LayerDataHandler(new DataType<>(this.products))
+      );
     }
   }
 
@@ -89,6 +89,13 @@ public class ContentLayer extends Layer<LayerDataHandler, LayerDataHandler> {
     this.products = EbayBrowseApi.requestItems(ebayApi, this.query, "19617", this.limit, this.offset);
   }
 
+  private void initChildren(Node node, LayerDataHandler data) {
+    for (Node child : node.getChildren()) {
+      child.clearNode();
+      child.initApplicationNodes(data, true);
+    }
+  }
+  
   private boolean withinBounds(int moveBy) {
     return !(this.offset == 0 && moveBy < 0);
   }
