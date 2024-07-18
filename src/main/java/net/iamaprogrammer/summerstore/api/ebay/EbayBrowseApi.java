@@ -15,9 +15,10 @@ import net.iamaprogrammer.summerstore.api.ProductInfo;
 
 
 public class EbayBrowseApi {
-  public static JsonObject requestRawItemData(EbayOauth2Api oauth, String query, int limit, int offset) {
+  public static JsonObject requestRawItemData(EbayOauth2Api oauth, String query, String categoryIds, int limit, int offset) {
     URL url = new URLBuilder("https://api.ebay.com/buy/browse/v1/item_summary/search")
       .query(query)
+      .categoryIds(categoryIds)
       .limit(limit)
       .offset(offset)
       .build();
@@ -38,8 +39,8 @@ public class EbayBrowseApi {
     }
   }
 
-  public static List<ProductInfo> requestItems(EbayOauth2Api oauth, String query, int limit, int offset) {
-    JsonObject data = requestRawItemData(oauth, query, limit, offset);
+  public static List<ProductInfo> requestItems(EbayOauth2Api oauth, String query, String categoryIds, int limit, int offset) {
+    JsonObject data = requestRawItemData(oauth, query, categoryIds, limit, offset);
     if (data == null) {
       return null;
     }

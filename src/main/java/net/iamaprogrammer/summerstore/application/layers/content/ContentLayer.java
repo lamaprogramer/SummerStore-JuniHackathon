@@ -28,8 +28,8 @@ public class ContentLayer extends Layer<LayerDataHandler, LayerDataHandler> {
   private final int COLUMN_COUNT = 3;
   private final int ROW_COUNT = 3;
   private final int limit = ROW_COUNT * COLUMN_COUNT;
-  
   private int offset = 0;
+  private String query = "";
 
   public ContentLayer() {
     super();
@@ -58,24 +58,26 @@ public class ContentLayer extends Layer<LayerDataHandler, LayerDataHandler> {
 
   @Override
   protected void onDataPassed(Node node, LayerDataHandler data) {
-    int moveBy = data.get(Integer.class);
-    
-    this.offset += withinBounds(moveBy) ? this.limit*moveBy : 0;
-    this.clearAndRequestItems();
-    
-    Node productList = node.getChild("product_list");
-    productList.clearNode();
-    productList.initApplicationNodes(
-      new LayerDataHandler(
-        new DataType<>(this.products)
-    ), true);
-
-    Node productPagination = node.getChild("product_pagination");
-    productPagination.clearNode();
-    productPagination.initApplicationNodes(
-      new LayerDataHandler(
-        new DataType<>(this.products)
-    ), true);
+    if (data.getDataId() == 0) {
+      int moveBy = data.get(Integer.class);
+      
+      this.offset += withinBounds(moveBy) ? this.limit*moveBy : 0;
+      this.clearAndRequestItems();
+      
+      Node productList = node.getChild("product_list");
+      productList.clearNode();
+      productList.initApplicationNodes(
+        new LayerDataHandler(
+          new DataType<>(this.products)
+      ), true);
+  
+      Node productPagination = node.getChild("product_pagination");
+      productPagination.clearNode();
+      productPagination.initApplicationNodes(
+        new LayerDataHandler(
+          new DataType<>(this.products)
+      ), true);
+    }
   }
 
   public void style() {
@@ -84,7 +86,7 @@ public class ContentLayer extends Layer<LayerDataHandler, LayerDataHandler> {
 
   private void clearAndRequestItems() {
     products.clear();
-    this.products = EbayBrowseApi.requestItems(ebayApi, "flower", limit, offset);
+    this.products = EbayBrowseApi.requestItems(ebayApi, this.query, "19617", this.limit, this.offset);
   }
 
   private boolean withinBounds(int moveBy) {

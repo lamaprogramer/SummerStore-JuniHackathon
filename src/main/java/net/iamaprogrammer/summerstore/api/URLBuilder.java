@@ -26,6 +26,11 @@ public class URLBuilder {
     return this;
   }
 
+  public URLBuilder categoryIds(String categories) {
+    this.params.add("category_ids=" + categories);
+    return this;
+  }
+
   public URL build() {
     try {
       //System.out.println(stringifyParams());
