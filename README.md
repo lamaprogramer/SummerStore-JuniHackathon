@@ -170,19 +170,21 @@ the transfer of any amount of data with any amount of data types between layers.
 Using the data transfer system, I could now implement the last notable feature, a pagination. The 
 functionality is pretty simple, you have two buttons, one going forward, and one going backward,
 and you can use these buttons to flip through pages of products. After the pagination was implemented, 
-the only things I had time to do were to make some style changes and clean up the code a bit.
+I made some stlye changes and cleaned up the code a bit.
 
 I changed the secondary color of the application from a pale yellow to a lime green. Pale yellow is 
 now the accent color for some controls. I also added icons to the buttons and added a helper class to
 make styling the buttons easier.
 
+Then I implemented a search bar, and restricted api data to only get products from the plant category.
+This was way easier to do since nearly all the code I needed was already implemented.
+
 That pretty much covers the most notable parts of the development process, I think the application is at
 a point where if I had the time to add more features, I could integrate them pretty easily. Some features
-I wanted to get to but didn't have time to include: A search bar, pages of different types of summer-related 
-products, and displaying more product info. If I had a lot of time, writing an HTML parser for the product 
-descriptions could have been fun too.
+I wanted to get to but didn't have time to include: Displaying more product info, and provide proper item 
+descriptions. If I had a lot of time, writing an HTML parser for the product 
+descriptions could have been fun.
 
 Overall, I'm pretty happy with how the project turned out, I learned a bunch of new stuff, such as Maven, 
-Java HTTP requests, integrating APIs, JavaFX, and GSON. I also got to use some stuff I don't normally use, 
-such as generics, nested classes, and tree-based structures.
-
+Java HTTP requests, integrating APIs, JavaFX, GSON, and GUI design. I also got to use some stuff I don't 
+normally use, such as generics, nested classes, and tree-based structures.
