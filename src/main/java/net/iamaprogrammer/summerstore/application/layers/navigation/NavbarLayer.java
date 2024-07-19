@@ -64,11 +64,13 @@ public class NavbarLayer extends Layer<Void, Void> {
     searchBar.setPromptText("Search: ");
     searchBar.setOnAction(new EventHandler<ActionEvent>() {
       @Override public void handle(ActionEvent e) {
-        node.passDataToPeer("products", 
-          new LayerDataHandler(1,
-            new DataType<>(searchBar.getText())
-          ));
-        //System.out.println("Searching for: " + searchBar.getText());
+        if (node.getParent().getChild("products").isEnabled()) {
+          node.passDataToPeer("products", 
+            new LayerDataHandler(1,
+              new DataType<>(searchBar.getText())
+            )
+          );
+        }
       }
     });
     
